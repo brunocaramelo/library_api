@@ -40,7 +40,7 @@ RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 WORKDIR /var/www/html
 
 RUN chown -R www-data:www-data \
-        /var/www/html/storage \
-        /var/www/html/bootstrap/cache
+       /var/www/html/storage \
+       /var/www/html/bootstrap/cache
 
 RUN php artisan optimize
