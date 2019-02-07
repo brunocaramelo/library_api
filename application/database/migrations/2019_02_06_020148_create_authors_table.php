@@ -17,6 +17,7 @@ class CreateAuthorsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('presentation')->nullable();
+            $table->string('status')->default('1');
             $table->timestamps();
         });
     }

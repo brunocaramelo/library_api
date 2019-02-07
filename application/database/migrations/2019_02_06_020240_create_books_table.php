@@ -23,6 +23,7 @@ class CreateBooksTable extends Migration
                 ->foreign('level_id')
                 ->references('id')
                 ->on('levels');
+            $table->string('status')->default('1');
             $table->timestamps();
         });
     }

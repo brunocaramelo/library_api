@@ -29,7 +29,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 # install phpunit
 RUN curl -fsSL https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
-    && composer global require phpunit/phpunit ^5.7 --no-progress --no-scripts --no-interaction
+    && composer global require phpunit/phpunit ^7.5 --no-progress --no-scripts --no-interaction
 
 # install cron
 RUN apt-get update && apt-get -y install rsyslog

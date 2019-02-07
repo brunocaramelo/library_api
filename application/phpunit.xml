@@ -31,11 +31,14 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="DB_CONNECTION" value="sqlite"/>
-        <env name="DB_DATABASE" value=":memory:"/>
+        <env name="DB_DATABASE" value="./tests/data/database.sqlite"/>
     </php>
-    <logging>
+    <!-- <logging>
         <log type="coverage-clover" target="tests/_reports/logs/clover.xml"/>
         <log type="coverage-html" target="tests/_reports/coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70" />
         <log type="testdox-text" target="tests/_reports/testdox/executed.txt"/>
-    </logging>
+    </logging> -->
+    <listeners>
+        <listener class="Tests\DatabaseTestListener"/>
+    </listeners>
 </phpunit>
