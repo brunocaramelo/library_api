@@ -16,8 +16,13 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->string('isbn')->unique();
+            $table->string('title');
             $table->string('cover');
-            $table->decimal('price', 2);
+            $table->decimal('price', 13, 2);
+            $table->integer('level_id')
+                ->foreign('level_id')
+                ->references('id')
+                ->on('levels');
             $table->timestamps();
         });
     }

@@ -5,6 +5,18 @@ crontab /tmp/crontab
 echo "Running composer install...";
 cd /var/www/html/ && composer install;
 
-cp /var/www/html/.env.example /var/www/html/.env
+file="/var/www/html/.env"
+if [ -f "$file" ]
+then
+	echo "$file found not to do."
+else
+	echo "$file not found. generate key and cache"
+    cp /var/www/html/.env.example /var/www/html/.env
+    
+    sleep 1
+    
+    php /var/www/html/artisan key:generate;
+    php /var/www/html/artisan config:cache;
+fi
 
-php /var/www/html/artisan key:generate;
+
