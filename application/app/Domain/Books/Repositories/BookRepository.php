@@ -26,12 +26,32 @@ class BookRepository implements BaseRepositoryContract
 
     public function create($data)
     {
-        return $this->book->create($data);
+        $bookCreate = $this->book->create($data);
+
+        $this->syncAuthors($bookCreate, $data['author']);
+        $this->syncDisciplines($bookCreate, $data['discipline']);
+
+        return $bookCreate;
     }
 
     public function update($identify, $data)
     {
         $bookSave = $this->book->find($identify);
-        return $bookSave->fill($data)->save();
+        $statusUpdate = $bookSave->fill($data)->save();
+
+        $this->syncAuthors($bookSave, $data['author']);
+        $this->syncDisciplines($bookSave, $data['discipline']);
+
+        return $statusUpdate;
+    }
+
+    public function syncAuthors(BookEntity $book, $lisAuthors)
+    {
+        return $book->authors()->sync($lisAuthors);
+    }
+    
+    public function syncDisciplines(BookEntity $book, $lisDisciplines)
+    {
+        return $book->disciplines()->sync($lisDisciplines);
     }
 }

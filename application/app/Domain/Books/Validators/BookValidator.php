@@ -19,6 +19,7 @@ class BookValidator
                                         'title' => 'required',
                                         'price' => 'required|numeric',
                                         'isbn' => 'required|unique:books,isbn',
+                                        'level' => 'required',
                                     ]);
     }
 
@@ -28,6 +29,7 @@ class BookValidator
                                         'title' => 'required',
                                         'price' => 'required|numeric',
                                         'isbn' => 'required',
+                                        'level' => 'required',
                                     ]);
     }
 
@@ -41,6 +43,7 @@ class BookValidator
     {
         $this->messages = [
                             'title.required'=>'Preencha o Título',
+                            'level.required'=>'Preencha o Nivel',
                             'isbn.required'=>'Preencha o ISBN',
                             'price.required'=>'Preencha o Preço',
                             'price.numeric'=>'Preço deve ser Numérico',

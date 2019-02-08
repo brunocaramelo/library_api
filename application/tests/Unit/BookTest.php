@@ -37,87 +37,133 @@ class BookTest extends TestCase
     }
     /**
      * @expectedException         \App\Domain\Books\Exceptions\BookNotFoundException
-     * @expectedExceptionMessage Autor não encontrado
+     * @expectedExceptionMessage Livro não encontrado
      */
-    // public function testBookFailNotFound()
-    // {
-    //     $authorService = new BookService();
-    //     $idFind = 10;
-    //     $authorService->getById($idFind)->toArray([]);
-    // }
+    public function testBookFailNotFound()
+    {
+        $authorService = new BookService();
+        $idFind = 10;
+        $authorService->getById($idFind)->toArray([]);
+    }
     
-    // public function testCreateBookSuccess()
-    // {
-    //     $expected = ['name' => 'Tonhão'];
+    public function testCreateBookSuccess()
+    {
+        $expected = $this->returnListSeedResult()[0];
+        $expected['isbn'] = '4644646464664';
+        
+        $mock = $expected;
+        $mock['author'] = [1];
+        $mock['discipline'] = [1,2];
 
-    //     $authorService = new BookService();
-    //     $last = $authorService->create($expected);
-    //     $final = $authorService->getById($last->id)->toArray([]);
-    //     $expected['id'] = $last->id;
-    //     $this->assertEquals($final, $expected);
-    // }
+        $authorService = new BookService();
+        $last = $authorService->create($mock);
+        $final = $authorService->getById($last->id)->toArray([]);
+        $expected['id'] = $last->id;
+        
+        $this->assertEquals($final, $expected);
+    }
+
+    /**
+     * @expectedException         \App\Domain\Authors\Exceptions\AuthorNotFoundException
+     * @expectedExceptionMessage  Autor não encontrado
+     */
+    public function testCreateBookFailAutor()
+    {
+        $expected = $this->returnListSeedResult()[1];
+        $expected['isbn'] = '4644646464664';
+        
+        $authorService = new BookService();
+        $last = $authorService->create($expected);
+        $final = $authorService->getById($last->id)->toArray([]);
+        $expected['id'] = $last->id;
+        $this->assertEquals($final, $expected);
+    }
+    /**
+     * @expectedException         \App\Domain\Disciplines\Exceptions\DisciplineNotFoundException
+     * @expectedExceptionMessage  Disciplina não encontrada
+     */
+    public function testCreateBookFailDiscipline()
+    {
+        $expected = $this->returnListSeedResult()[1];
+        $expected['isbn'] = '4644646464664';
+        $expected['author'] = [1];
+
+        $authorService = new BookService();
+        $last = $authorService->create($expected);
+        $final = $authorService->getById($last->id)->toArray([]);
+        $expected['id'] = $last->id;
+        $this->assertEquals($final, $expected);
+    }
+
     /**
      * @expectedException         \App\Domain\Books\Exceptions\BookEditException
-     * @expectedExceptionMessage  Autor já cadastrado
+     * @expectedExceptionMessage  Livro já cadastrado
      */
-    // public function testCreateBookFailExists()
-    // {
-    //     $expected = ['name' => 'Clenir Bellezi de Oliveira'];
+    public function testCreateBookFailExists()
+    {
+        $expected = $this->returnListSeedResult()[1];
 
-    //     $authorService = new BookService();
-    //     $last = $authorService->create($expected);
-    //     $final = $authorService->getById($last->id)->toArray([]);
-    //     $expected['id'] = $last->id;
-    //     $this->assertEquals($final, $expected);
-    // }
+        $authorService = new BookService();
+        $last = $authorService->create($expected);
+        $final = $authorService->getById($last->id)->toArray([]);
+        $expected['id'] = $last->id;
+        $this->assertEquals($final, $expected);
+    }
     
-    // public function testUpdateBookSuccess()
-    // {
-    //     $expected = [
-    //         'id' => '2',
-    //         'name' => 'Tonhão'
-    //     ];
+    public function testUpdateBookSuccess()
+    {
+        $expected = $this->returnListSeedResult()[0];
+        $expected['isbn'] = '4644646464664';
+        
+        $mock = $expected;
+        $mock['author'] = [1];
+        $mock['discipline'] = [1,2];
+        
+        $authorService = new BookService();
+        $authorService->update($expected['id'], $mock);
+        $final = $authorService->getById($expected['id'])->toArray([]);
+        $expected['id'] = $expected['id'];
+        $this->assertEquals($final, $expected);
+    }
 
-    //     $authorService = new BookService();
-    //     $authorService->update($expected['id'], $expected);
-    //     $final = $authorService->getById($expected['id'])->toArray([]);
-    //     $expected['id'] = $expected['id'];
-    //     $this->assertEquals($final, $expected);
-    // }
     /**
      * @expectedException         \App\Domain\Books\Exceptions\BookEditException
-     * @expectedExceptionMessage  Preencha o Nome
+     * @expectedExceptionMessage  Preencha o ISBN
      */
-    // public function testUpdateBookFailName()
-    // {
-    //     $expected = [
-    //         'id' => '2',
-    //         'name' => null
-    //     ];
+    public function testUpdateBookFailName()
+    {
+        $expected = $this->returnListSeedResult()[0];
+        $expected['isbn'] = null;
+        
+        $mock = $expected;
+        $mock['author'] = [1];
+        $mock['discipline'] = [1,2];
 
-    //     $authorService = new BookService();
-    //     $authorService->update($expected['id'], $expected);
-    //     $final = $authorService->getById($expected['id'])->toArray([]);
-    //     $expected['id'] = $expected['id'];
-    //     $this->assertEquals($final, $expected);
-    // }
+        $authorService = new BookService();
+        $authorService->update($expected['id'], $expected);
+        $final = $authorService->getById($expected['id'])->toArray([]);
+        $expected['id'] = $expected['id'];
+        $this->assertEquals($final, $expected);
+    }
     /**
      * @expectedException         \App\Domain\Books\Exceptions\BookNotFoundException
-     * @expectedExceptionMessage Autor não encontrado
+     * @expectedExceptionMessage Livro não encontrado
      */
-    // public function testUpdateBookFailNotFound()
-    // {
-    //     $expected = [
-    //         'id' => '99',
-    //         'name' => 'Tem um nome'
-    //     ];
+    public function testUpdateBookFailNotFound()
+    {
+        $expected = $this->returnListSeedResult()[0];
+        $expected['id'] = 99;
+        
+        $mock = $expected;
+        $mock['author'] = [1];
+        $mock['discipline'] = [1,2];
 
-    //     $authorService = new BookService();
-    //     $authorService->update($expected['id'], $expected);
-    //     $final = $authorService->getById($expected['id'])->toArray([]);
-    //     $expected['id'] = $expected['id'];
-    //     $this->assertEquals($final, $expected);
-    // }
+        $authorService = new BookService();
+        $authorService->update($expected['id'], $expected);
+        $final = $authorService->getById($expected['id'])->toArray([]);
+        $expected['id'] = $expected['id'];
+        $this->assertEquals($final, $expected);
+    }
  
     private function returnListSeedResult()
     {

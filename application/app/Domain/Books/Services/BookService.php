@@ -12,6 +12,9 @@ use App\Domain\Books\Repositories\BookCacheRepository;
 use App\Domain\Books\Resources\BookListResource;
 use App\Domain\Books\Resources\BookResource;
 
+use App\Domain\Authors\Services\AuthorService;
+use App\Domain\Disciplines\Services\DisciplineService;
+
 class BookService
 {
     private $bookRepo;
@@ -29,6 +32,8 @@ class BookService
 
     public function create(array $data): BookEntity
     {
+        $data['level_name'] = $data['level'];
+
         $validate = new BookValidator();
         $validation = $validate->validateCreate($data);
         
@@ -36,11 +41,17 @@ class BookService
             throw new BookEditException(implode("\n", $validation->errors()->all()));
         }
         
-        return $this->bookRepo->create($data);
-    }
+        $this->verifyAuthors($data['author']);
+        $this->verifyDiscliplines($data['discipline']);
 
+        $bookInstance = $this->bookRepo->create($data);
+        return $bookInstance;
+    }
+    
     public function update($identify, array $data): bool
     {
+        $data['level_name'] = $data['level'];
+
         $validate = new BookValidator();
         $validation = $validate->validateUpdate($data);
         
@@ -49,7 +60,7 @@ class BookService
         }
         
         if ($this->bookRepo->find($identify) === null) {
-            throw new BookNotFoundException('Autor não encontrado');
+            throw new BookNotFoundException('Livro não encontrado');
         }
 
         return $this->bookRepo->update($identify, $data);
@@ -60,9 +71,25 @@ class BookService
         $authorCache = new BookCacheRepository($this->bookRepo);
         $found = $authorCache->find($identify);
         if ($found === null) {
-            throw new BookNotFoundException('Autor não encontrado');
+            throw new BookNotFoundException('Livro não encontrado');
         }
         return new BookResource($found);
+    }
+
+    private function verifyAuthors(array $authors)
+    {
+        $authorService = new AuthorService();
+        foreach ($authors as $authorId) {
+            $authorService->getById($authorId);
+        }
+    }
+    
+    private function verifyDiscliplines(array $disciplines)
+    {
+        $disciplineService = new DisciplineService();
+        foreach ($disciplines as $disciplineId) {
+            $disciplineService->getById($disciplineId);
+        }
     }
    
 }

@@ -12,6 +12,7 @@ class BookEntity extends Model
                             'isbn',
                             'title',
                             'cover',
+                            'level_name',
                             'price',
                         ];
 

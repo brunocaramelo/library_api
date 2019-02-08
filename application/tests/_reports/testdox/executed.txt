@@ -11,6 +11,14 @@ Unit\Author
 Unit\Book
  [x] All books
  [x] Book success
+ [x] Book fail not found
+ [x] Create book success
+ [x] Create book fail autor
+ [x] Create book fail discipline
+ [x] Create book fail exists
+ [x] Update book success
+ [x] Update book fail name
+ [x] Update book fail not found
 
 Unit\Discipline
  [x] All disciplines
