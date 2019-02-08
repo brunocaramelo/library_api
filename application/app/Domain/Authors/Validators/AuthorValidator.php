@@ -23,7 +23,7 @@ class AuthorValidator
     public function validateUpdate($fields)
     {
         return $this->make($fields, [
-                                        'name' => 'required',
+                                        'name' => 'required|unique:authors,name,'.$fields['id'],
                                     ]);
     }
 

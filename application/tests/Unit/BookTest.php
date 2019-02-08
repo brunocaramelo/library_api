@@ -153,6 +153,7 @@ class BookTest extends TestCase
     {
         $expected = $this->returnListSeedResult()[0];
         $expected['id'] = 99;
+        $expected['isbn'] = 88899;
         
         $mock = $expected;
         $mock['author'] = [1];

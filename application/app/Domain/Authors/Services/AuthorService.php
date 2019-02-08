@@ -43,6 +43,7 @@ class AuthorService
 
     public function update($identify, array $data): bool
     {
+        $data['id'] = $identify;
         $validate = new AuthorValidator();
         $validation = $validate->validateUpdate($data);
         

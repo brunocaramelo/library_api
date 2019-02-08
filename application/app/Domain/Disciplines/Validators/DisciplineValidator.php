@@ -23,7 +23,7 @@ class DisciplineValidator
     public function validateUpdate($fields)
     {
         return $this->make($fields, [
-                                        'name' => 'required',
+                                        'name' => 'required|unique:disciplines,name,'.$fields['id'],
                                     ]);
     }
 

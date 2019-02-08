@@ -51,6 +51,7 @@ class BookService
     public function update($identify, array $data): bool
     {
         $data['level_name'] = $data['level'];
+        $data['id'] = $identify;
 
         $validate = new BookValidator();
         $validation = $validate->validateUpdate($data);
@@ -62,7 +63,7 @@ class BookService
         if ($this->bookRepo->find($identify) === null) {
             throw new BookNotFoundException('Livro não encontrado');
         }
-        
+
         $this->verifyAuthors($data['author']);
         $this->verifyDiscliplines($data['discipline']);
 

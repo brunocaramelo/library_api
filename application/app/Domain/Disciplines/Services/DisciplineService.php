@@ -43,6 +43,7 @@ class DisciplineService
 
     public function update($identify, array $data): bool
     {
+        $data['id'] = $identify;
         $validate = new DisciplineValidator();
         $validation = $validate->validateUpdate($data);
         

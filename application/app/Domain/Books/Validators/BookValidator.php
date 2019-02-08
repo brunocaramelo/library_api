@@ -28,7 +28,7 @@ class BookValidator
         return $this->make($fields, [
                                         'title' => 'required',
                                         'price' => 'required|numeric',
-                                        'isbn' => 'required',
+                                        'isbn' => 'required|unique:books,isbn,'.$fields['id'],
                                         'level' => 'required',
                                     ]);
     }
