@@ -5,17 +5,17 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Domain\Authors\Services\AuthorService;
-use Illuminate\Support\Facades\Artisan as Artisan;
-use function GuzzleHttp\json_encode;
+use Tests\RunSeed\RunSeed;
 
 class AuthorTest extends TestCase
 {
     use RefreshDatabase;
+    use RunSeed;
     
     public function setUp()
     {
         parent::setUp();
-        Artisan::call('db:seed', ['--class' => 'Seeds\ImporFakeJsonSeeder' ]);
+        $this->runSeed();
     }
 
     public function testAllAuthors()

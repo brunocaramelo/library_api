@@ -3,20 +3,19 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
-use Illuminate\Support\Facades\Artisan as Artisan;
-
+use Tests\RunSeed\RunSeed;
 
 class DisciplineApiTest extends TestCase
 {
     use RefreshDatabase;
+    use RunSeed;
 
-    public function setUp(){
+    public function setUp()
+    {
         parent::setUp();
-        Artisan::call('db:seed', ['--class' => 'Seeds\ImporFakeJsonSeeder' ]);
+        $this->runSeed();
     }
 
    

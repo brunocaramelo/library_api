@@ -5,17 +5,17 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Domain\Disciplines\Services\DisciplineService;
-use Illuminate\Support\Facades\Artisan as Artisan;
-use function GuzzleHttp\json_encode;
+use Tests\RunSeed\RunSeed;
 
 class DisciplineTest extends TestCase
 {
     use RefreshDatabase;
-    
+    use RunSeed;
+
     public function setUp()
     {
         parent::setUp();
-        Artisan::call('db:seed', ['--class' => 'Seeds\ImporFakeJsonSeeder' ]);
+        $this->runSeed();
     }
 
     public function testAllDisciplines()
