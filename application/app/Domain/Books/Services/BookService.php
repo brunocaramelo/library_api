@@ -62,6 +62,9 @@ class BookService
         if ($this->bookRepo->find($identify) === null) {
             throw new BookNotFoundException('Livro não encontrado');
         }
+        
+        $this->verifyAuthors($data['author']);
+        $this->verifyDiscliplines($data['discipline']);
 
         return $this->bookRepo->update($identify, $data);
     }

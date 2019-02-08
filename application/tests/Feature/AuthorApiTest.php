@@ -61,8 +61,7 @@ class AuthorApiTest extends TestCase
     
     public function testPutSuccess()
     {
-        $this->json('PUT', '/api/v1/author/2', ["id"=>2,
-                                                'name' => 'Sally'])
+        $this->json('PUT', '/api/v1/author/2', ['name' => 'Sally'])
                 ->assertStatus(200)
                 ->assertJson([
                         "message"=> "Autor Editado com sucesso",
@@ -71,8 +70,7 @@ class AuthorApiTest extends TestCase
 
     public function testPutFailNotFound()
     {
-        $this->json('PUT', '/api/v1/author/2', ["id"=>99,
-                                                'name' => 'Sally'])
+        $this->json('PUT', '/api/v1/author/99', ['name' => 'Sally'])
                 ->assertStatus(404)
                 ->assertJson([
                         "error"=> "Autor não encontrado",
@@ -81,8 +79,7 @@ class AuthorApiTest extends TestCase
 
     public function testPutFailEdit()
     {
-        $this->json('PUT', '/api/v1/author/2', ["id"=>2,
-                                                'name' => null])
+        $this->json('PUT', '/api/v1/author/2', ['name' => null])
                 ->assertStatus(422)
                 ->assertJson([
                         "error"=> "Preencha o Nome",

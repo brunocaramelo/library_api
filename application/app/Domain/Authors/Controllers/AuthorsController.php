@@ -29,7 +29,7 @@ class AuthorsController extends Controller
         try {
             $body = json_decode($request->getContent(), true);
             $authorService = new AuthorService();
-            $authorService->update($body['id'], $body);
+            $authorService->update($request->id, $body);
             return response()->json(['message'=>'Autor Editado com sucesso']);
         } catch (AuthorEditException $error) {
             return response()->json(['error'=>$error->getMessage()], 422);

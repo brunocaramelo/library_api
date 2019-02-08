@@ -42,6 +42,19 @@ Feature\AuthorApi
  [x] Post success
  [x] Post fail edit
 
+Feature\BookApi
+ [x] Get one book
+ [x] Get all books
+ [x] Put success
+ [x] Put fail not found
+ [x] Put fail edit
+ [x] Put fail edit author not found
+ [x] Put fail edit descipline not found
+ [x] Post success
+ [x] Post fail edit
+ [x] Post fail edit author not found
+ [x] Post fail edit descipline not found
+
 Feature\DisciplineApi
  [x] Get one author
  [x] Get all authors

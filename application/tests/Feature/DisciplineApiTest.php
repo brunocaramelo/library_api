@@ -62,8 +62,7 @@ class DisciplineApiTest extends TestCase
     
     public function testPutSuccess()
     {
-        $this->json('PUT', '/api/v1/discipline/2', ["id"=>2,
-                                                'name' => 'Religiao'])
+        $this->json('PUT', '/api/v1/discipline/2', ['name' => 'Religiao'])
                 ->assertStatus(200)
                 ->assertJson([
                         "message"=> "Disciplina Editada com sucesso",
@@ -72,8 +71,7 @@ class DisciplineApiTest extends TestCase
 
     public function testPutFailNotFound()
     {
-        $this->json('PUT', '/api/v1/discipline/2', ["id"=>99,
-                                                'name' => 'Geografia'])
+        $this->json('PUT', '/api/v1/discipline/99', ['name' => 'Geografia'])
                 ->assertStatus(404)
                 ->assertJson([
                         "error"=> "Disciplina não encontrada",
@@ -82,8 +80,7 @@ class DisciplineApiTest extends TestCase
 
     public function testPutFailEdit()
     {
-        $this->json('PUT', '/api/v1/discipline/2', ["id"=>2,
-                                                'name' => null])
+        $this->json('PUT', '/api/v1/discipline/2', ['name' => null])
                 ->assertStatus(422)
                 ->assertJson([
                         "error"=> "Preencha o Nome",

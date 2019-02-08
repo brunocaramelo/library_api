@@ -62,4 +62,27 @@ Route::group(['prefix' => 'v1'], function ()
         ]);
     });
 
+    Route::get('/books',
+        [ 'as' => 'books-list',
+        'uses' => '\App\Domain\Books\Controllers\BooksController@getAll'
+    ]);
+
+    Route::group(['prefix' => 'book'], function ()
+    {
+        Route::get('/{id}',
+            [ 'as' => 'book-detail',
+            'uses' => '\App\Domain\Books\Controllers\BooksController@getById'
+        ]);
+
+        Route::put('/{id}',
+            [ 'as' => 'book-store',
+            'uses' => '\App\Domain\Books\Controllers\BooksController@store'
+        ]);
+
+        Route::post('/',
+            [ 'as' => 'book-create',
+            'uses' => '\App\Domain\Books\Controllers\BooksController@create'
+        ]);
+    });
+
 });
