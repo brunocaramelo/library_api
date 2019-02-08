@@ -1,10 +1,12 @@
 <?php
 
-namespace Admin\Employee\Repositories;
+namespace App\Domain\Authors\Repositories;
 
-use Admin\Employee\Entities\EmployeeEntity;
+use App\Domain\Authors\Entities\AuthorEntity;
 
-class AuthorRepository
+use App\Infrastructure\Contracts\BaseRepositoryContract;
+
+class AuthorRepository implements BaseRepositoryContract
 {
     private $author = null;
 
@@ -23,17 +25,6 @@ class AuthorRepository
         return $this->author->find($identify);
     }
 
-    public function findBy($field, $value)
-    {
-        return $this->author->where($field, $value);
-    }
-    
-    public function remove($identify)
-    {
-        $authorSave = $this->author->find($identify);
-        return $authorSave->fill([ 'status' => '0' ])->save();
-    }
-    
     public function create($data)
     {
         return $this->author->create($data);

@@ -4,19 +4,23 @@ namespace App\Domain\Authors\Repositories;
 
 use Illuminate\Support\Facades\Cache;
 
-class AuthorsCacheRepository
+use App\Infrastructure\Contracts\BaseCacheRepositoryContract;
+
+use App\Infrastructure\Contracts\BaseRepositoryContract;
+
+class AuthorCacheRepository implements BaseCacheRepositoryContract
 {
     protected $authors;
 
-    public function __construct(EmployeeRepository $authors)
+    public function __construct(BaseRepositoryContract $authors)
     {
         $this->authors = $authors;
     }
 
-    public function getList()
+    public function getAll()
     {
         return Cache::remember('author.list', 10 ,function () {
-            return $this->authors->getList()->get();
+            return $this->authors->getAll();
         });
     }
 

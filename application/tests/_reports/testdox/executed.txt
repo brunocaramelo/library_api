@@ -1,8 +1,24 @@
 Unit\Author
- [ ] All authors
+ [x] All authors
+ [x] Author success
+ [x] Author fail not found
+ [x] Create author success
+ [x] Create author fail exists
+ [x] Update author success
+ [x] Update author fail name
+ [x] Update author fail not found
 
 Unit\Example
- [ ] Basic test
+ [x] Basic test
+
+Feature\ProductApi
+ [x] Get one author
+ [x] Get all authors
+ [x] Put success
+ [x] Put fail not found
+ [x] Put fail edit
+ [x] Post success
+ [x] Post fail edit
 
 Feature\Example
  [x] Basic test

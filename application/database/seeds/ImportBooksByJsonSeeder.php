@@ -41,15 +41,13 @@ class ImportBooksByJsonSeeder extends Seeder
 
     private function importBook(array $book)
     {
-       $levelInstance = $this->importLevel($book['level']);
-       
        $bookInstance = Book::firstOrCreate(
            [ 'isbn' => $book['isbn'] ],
            [
             'title' => $book['title'],
             'cover' => $book['cover'],
             'price' => number_format($book['price'], 2, '.', ''),
-            'level_id' => $levelInstance->id,
+            'level_name' => $book['level'],
            ]
         );
         
@@ -89,23 +87,8 @@ class ImportBooksByJsonSeeder extends Seeder
     private function importDiscipline(string $disciplineName)
     {
        return Discipline::firstOrCreate(
-           [ 'name' => $disciplineName ,
-             'code' => $this->removeSpecialChar($disciplineName),
-           ]
+           [ 'name' => $disciplineName]
         );
     }
-
-    private function importLevel(string $levelName)
-    {
-       return Level::firstOrCreate(
-           [ 'name' => $levelName ,
-             'code' => $this->removeSpecialChar($levelName),
-           ]
-        );
-    }
-
-    private function removeSpecialChar($value)
-    {
-        return preg_replace('/[^a-zA-Z0-9_-]/s', '', $value);
-    }
+    
 }

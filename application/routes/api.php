@@ -13,6 +13,29 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1'], function ()
+{
+    Route::get('/authors',
+        [ 'as' => 'authors-list',
+        'uses' => '\App\Domain\Authors\Controllers\AuthorsController@getAll'
+    ]);
+    
+    Route::group(['prefix' => 'author'], function ()
+    {
+        Route::get('/{id}',
+            [ 'as' => 'author-detail',
+            'uses' => '\App\Domain\Authors\Controllers\AuthorsController@getById'
+        ]);
+
+        Route::put('/{id}',
+            [ 'as' => 'author-store',
+            'uses' => '\App\Domain\Authors\Controllers\AuthorsController@store'
+        ]);
+
+        Route::post('/',
+            [ 'as' => 'author-create',
+            'uses' => '\App\Domain\Authors\Controllers\AuthorsController@create'
+        ]);
+    });
+
 });

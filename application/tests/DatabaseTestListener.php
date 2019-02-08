@@ -21,9 +21,7 @@ class DatabaseTestListener implements TestListener
         if ($suite->getName() !== 'Feature') {
             return;
         }
-
         chdir(__DIR__ . '/..');
-
         shell_exec('php artisan migrate:refresh --seed');
     }
 

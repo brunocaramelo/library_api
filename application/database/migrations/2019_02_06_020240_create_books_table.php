@@ -19,10 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('title');
             $table->string('cover');
             $table->decimal('price', 13, 2);
-            $table->integer('level_id')
-                ->foreign('level_id')
-                ->references('id')
-                ->on('levels');
+            $table->enum('level_name', [ 'Ensino médio' , 'Ensino Fundamental' ]);
             $table->string('status')->default('1');
             $table->timestamps();
         });
