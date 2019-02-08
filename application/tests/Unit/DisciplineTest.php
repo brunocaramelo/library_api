@@ -48,7 +48,7 @@ class DisciplineTest extends TestCase
     
     public function testCreateDisciplineSuccess()
     {
-        $expected = ['name' => 'Tonhão'];
+        $expected = ['name' => 'Artes'];
 
         $authorService = new DisciplineService();
         $last = $authorService->create($expected);
@@ -62,7 +62,7 @@ class DisciplineTest extends TestCase
      */
     public function testCreateDisciplineFailExists()
     {
-        $expected = ['name' => 'Clenir Bellezi de Oliveira'];
+        $expected = ['name' => 'Literatura'];
 
         $authorService = new DisciplineService();
         $last = $authorService->create($expected);
