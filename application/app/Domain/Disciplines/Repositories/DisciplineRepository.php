@@ -32,7 +32,7 @@ class DisciplineRepository implements BaseRepositoryContract
 
     public function update($identify, $data)
     {
-        $authorSave = $this->discipline->find($identify);
-        return $authorSave->fill($data)->save();
+        $disciplineSave = $this->discipline->find($identify);
+        return $disciplineSave->fill($data)->save();
     }
 }

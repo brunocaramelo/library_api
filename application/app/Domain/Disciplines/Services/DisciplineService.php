@@ -59,8 +59,8 @@ class DisciplineService
 
     public function getById($identify): DisciplineResource
     {
-        $authorCache = new DisciplineCacheRepository($this->disciplineRepo);
-        $found = $authorCache->find($identify);
+        $disciplineCache = new DisciplineCacheRepository($this->disciplineRepo);
+        $found = $disciplineCache->find($identify);
         if ($found === null) {
             throw new DisciplineNotFoundException('Disciplina não encontrada');
         }

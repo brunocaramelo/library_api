@@ -16,7 +16,7 @@ class DisciplineValidator
     public function validateCreate($fields)
     {
         return $this->make($fields, [
-                                        'name' => 'required|unique:authors,name',
+                                        'name' => 'required|unique:disciplines,name',
                                     ]);
     }
 
