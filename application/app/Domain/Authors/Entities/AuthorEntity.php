@@ -17,4 +17,9 @@ class AuthorEntity extends Model
     {
         return $this->belongsToMany(\App\Domain\Authors\Entities\BookEntity::class, 'author_id', 'book_id');
     }
+    
+    public function scopeActive($query)
+    {
+        return $query->where('status', '=', '1');
+    }
 }

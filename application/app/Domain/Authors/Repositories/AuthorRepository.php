@@ -17,7 +17,7 @@ class AuthorRepository implements BaseRepositoryContract
 
     public function getAll()
     {
-        return $this->author->all();
+        return $this->author->active()->get();
     }
 
     public function find($identify)

@@ -117,7 +117,7 @@ class AuthorTest extends TestCase
         $expected['id'] = $expected['id'];
         $this->assertEquals($final, $expected);
     }
-    
+ 
     private function returnListSeedResult()
     {
         return json_decode('[{"id":1,"name":"Clenir Bellezi de Oliveira"},{"id":2,"name":"Maria Falsa"},{"id":3,"name":"Regina Falsa"},{"id":4,"name":"Mauro Falso"}]',true);

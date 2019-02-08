@@ -17,7 +17,7 @@ class DisciplineRepository implements BaseRepositoryContract
 
     public function getAll()
     {
-        return $this->discipline->all();
+        return $this->discipline->active()->get();
     }
 
     public function find($identify)

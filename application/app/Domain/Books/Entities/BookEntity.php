@@ -24,4 +24,9 @@ class BookEntity extends Model
     {
         return $this->belongsToMany(\App\Domain\Disciplines\Entities\DisciplineEntity::class, 'book_disciplines', 'book_id', 'discipline_id');
     }
+    
+    public function scopeActive($query)
+    {
+        return $query->where('status', '=', '1');
+    }
 }

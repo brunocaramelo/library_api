@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1549637394">
-  <project timestamp="1549637394">
+<coverage generated="1549639821">
+  <project timestamp="1549639821">
     <package name="App\Domain\Authors\Controllers">
       <file name="/var/www/html/library_api/application/app/Domain/Authors/Controllers/AuthorsController.php">
         <class name="App\Domain\Authors\Controllers\AuthorsController" namespace="App\Domain\Authors\Controllers">
@@ -34,11 +34,13 @@
     <package name="App\Domain\Authors\Entities">
       <file name="/var/www/html/library_api/application/app/Domain/Authors/Entities/AuthorEntity.php">
         <class name="App\Domain\Authors\Entities\AuthorEntity" namespace="App\Domain\Authors\Entities">
-          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+          <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="1" elements="4" coveredelements="2"/>
         </class>
         <line num="16" type="method" name="books" visibility="public" complexity="1" crap="2.00" count="0"/>
         <line num="18" type="stmt" count="0"/>
-        <metrics loc="20" ncloc="20" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        <line num="21" type="method" name="scopeActive" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="23" type="stmt" count="2"/>
+        <metrics loc="25" ncloc="25" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="1" elements="4" coveredelements="2"/>
       </file>
     </package>
     <package name="App\Domain\Authors\Exceptions">
@@ -88,6 +90,24 @@
         <line num="35" type="stmt" count="2"/>
         <line num="36" type="stmt" count="2"/>
         <metrics loc="38" ncloc="38" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="12" coveredelements="12"/>
+      </file>
+      <file name="/var/www/html/library_api/application/app/Domain/Books/Repositories/BookRepository.php">
+        <class name="App\Domain\Authors\Repositories\BookRepository" namespace="App\Domain\Authors\Repositories">
+          <metrics complexity="5" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
+        </class>
+        <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="14" type="stmt" count="0"/>
+        <line num="15" type="stmt" count="0"/>
+        <line num="17" type="method" name="getAll" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="19" type="stmt" count="0"/>
+        <line num="22" type="method" name="find" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="24" type="stmt" count="0"/>
+        <line num="27" type="method" name="create" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="29" type="stmt" count="0"/>
+        <line num="32" type="method" name="update" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <metrics loc="37" ncloc="37" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="12" coveredelements="0"/>
       </file>
     </package>
     <package name="App\Domain\Authors\Resources">
@@ -169,13 +189,15 @@
     <package name="App\Domain\Books\Entities">
       <file name="/var/www/html/library_api/application/app/Domain/Books/Entities/BookEntity.php">
         <class name="App\Domain\Books\Entities\BookEntity" namespace="App\Domain\Books\Entities">
-          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+          <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="6" coveredelements="4"/>
         </class>
         <line num="18" type="method" name="authors" visibility="public" complexity="1" crap="1" count="30"/>
         <line num="20" type="stmt" count="30"/>
         <line num="23" type="method" name="disciplines" visibility="public" complexity="1" crap="1" count="30"/>
         <line num="25" type="stmt" count="30"/>
-        <metrics loc="27" ncloc="27" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+        <line num="28" type="method" name="scopeActive" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="30" type="stmt" count="0"/>
+        <metrics loc="33" ncloc="33" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="6" coveredelements="4"/>
       </file>
     </package>
     <package name="App\Domain\Disciplines\Controllers">
@@ -211,11 +233,13 @@
     <package name="App\Domain\Disciplines\Entities">
       <file name="/var/www/html/library_api/application/app/Domain/Disciplines/Entities/DisciplineEntity.php">
         <class name="App\Domain\Disciplines\Entities\DisciplineEntity" namespace="App\Domain\Disciplines\Entities">
-          <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+          <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="1" elements="4" coveredelements="2"/>
         </class>
         <line num="15" type="method" name="books" visibility="public" complexity="1" crap="2.00" count="0"/>
         <line num="17" type="stmt" count="0"/>
-        <metrics loc="19" ncloc="19" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        <line num="20" type="method" name="scopeActive" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="22" type="stmt" count="2"/>
+        <metrics loc="24" ncloc="24" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="1" elements="4" coveredelements="2"/>
       </file>
     </package>
     <package name="App\Domain\Disciplines\Exceptions">
@@ -343,6 +367,6 @@
         <metrics loc="44" ncloc="44" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="15" coveredelements="15"/>
       </file>
     </package>
-    <metrics files="21" loc="618" ncloc="618" classes="17" methods="52" coveredmethods="50" conditionals="0" coveredconditionals="0" statements="134" coveredstatements="132" elements="186" coveredelements="182"/>
+    <metrics files="22" loc="671" ncloc="671" classes="18" methods="60" coveredmethods="52" conditionals="0" coveredconditionals="0" statements="144" coveredstatements="134" elements="204" coveredelements="186"/>
   </project>
 </coverage>
