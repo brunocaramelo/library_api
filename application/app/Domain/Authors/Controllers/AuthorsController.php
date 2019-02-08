@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Domain\Authors\Services\AuthorService;
-use Admin\Bills\Exceptions\BillExistenceException;
 
 use App\Domain\Authors\Exceptions\AuthorEditException;
 use App\Domain\Authors\Exceptions\AuthorNotFoundException;

@@ -38,4 +38,28 @@ Route::group(['prefix' => 'v1'], function ()
         ]);
     });
 
+
+    Route::get('/disciplines',
+        [ 'as' => 'disciplines-list',
+        'uses' => '\App\Domain\Disciplines\Controllers\DisciplinesController@getAll'
+    ]);
+
+    Route::group(['prefix' => 'discipline'], function ()
+    {
+        Route::get('/{id}',
+            [ 'as' => 'discipline-detail',
+            'uses' => '\App\Domain\Disciplines\Controllers\DisciplinesController@getById'
+        ]);
+
+        Route::put('/{id}',
+            [ 'as' => 'discipline-store',
+            'uses' => '\App\Domain\Disciplines\Controllers\DisciplinesController@store'
+        ]);
+
+        Route::post('/',
+            [ 'as' => 'discipline-create',
+            'uses' => '\App\Domain\Disciplines\Controllers\DisciplinesController@create'
+        ]);
+    });
+
 });

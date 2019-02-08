@@ -8,10 +8,29 @@ Unit\Author
  [x] Update author fail name
  [x] Update author fail not found
 
+Unit\Discipline
+ [x] All disciplines
+ [x] Discipline success
+ [x] Discipline fail not found
+ [x] Create discipline success
+ [x] Create discipline fail exists
+ [x] Update discipline success
+ [x] Update discipline fail name
+ [x] Update discipline fail not found
+
 Unit\Example
  [x] Basic test
 
-Feature\ProductApi
+Feature\AuthorApi
+ [x] Get one author
+ [x] Get all authors
+ [x] Put success
+ [x] Put fail not found
+ [x] Put fail edit
+ [x] Post success
+ [x] Post fail edit
+
+Feature\DisciplineApi
  [x] Get one author
  [x] Get all authors
  [x] Put success

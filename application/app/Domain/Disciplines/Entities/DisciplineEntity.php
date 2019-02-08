@@ -9,10 +9,7 @@ class DisciplineEntity extends Model
     protected $table = 'disciplines';
     
     protected $fillable = [
-                            'isbn',
-                            'title',
-                            'cover',
-                            'price',
+                            'name'
                         ];
     
     public function books()

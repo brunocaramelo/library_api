@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan as Artisan;
 
 
-class ProductApiTest extends TestCase
+class AuthorApiTest extends TestCase
 {
     use RefreshDatabase;
 
