@@ -3,7 +3,6 @@
 namespace App\Domain\Authors\Repositories;
 
 use App\Domain\Authors\Entities\AuthorEntity;
-
 use App\Infrastructure\Contracts\BaseRepositoryContract;
 
 class AuthorRepository implements BaseRepositoryContract

@@ -8,6 +8,10 @@ Unit\Author
  [x] Update author fail name
  [x] Update author fail not found
 
+Unit\Book
+ [x] All books
+ [x] Book success
+
 Unit\Discipline
  [x] All disciplines
  [x] Discipline success

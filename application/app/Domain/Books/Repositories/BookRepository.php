@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Authors\Repositories;
+namespace App\Domain\Books\Repositories;
 
 use App\Domain\Books\Entities\BookEntity;
 use App\Infrastructure\Contracts\BaseRepositoryContract;

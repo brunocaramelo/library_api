@@ -3,7 +3,6 @@
 namespace App\Domain\Disciplines\Repositories;
 
 use App\Domain\Disciplines\Entities\DisciplineEntity;
-
 use App\Infrastructure\Contracts\BaseRepositoryContract;
 
 class DisciplineRepository implements BaseRepositoryContract
