@@ -10,25 +10,39 @@ use App\Infrastructure\Contracts\BaseRepositoryContract;
 
 class BookCacheRepository implements BaseCacheRepositoryContract
 {
-    protected $authors;
+    protected $books;
 
-    public function __construct(BaseRepositoryContract $authors)
+    public function __construct(BaseRepositoryContract $books)
     {
-        $this->authors = $authors;
+        $this->books = $books;
     }
 
     public function getAll()
     {
         return Cache::remember('book.list', 10 ,function () {
-            return $this->authors->getAll();
+            return $this->books->getAll();
         });
     }
-
   
     public function find($identify)
     {
         return Cache::remember("book.{$identify}", 60 ,function () use ($identify) {
-            return $this->authors->find($identify);
+            return $this->books->find($identify);
         });
+    }
+
+    public function update($identify, $data)
+    {
+        $updateResult = $this->books->update($identify, $data);
+        Cache::forget("book.{$identify}");
+        Cache::forget("book.list");
+        return $updateResult;
+    }
+    
+    public function create($data)
+    {
+        $createResult = $this->books->create($data);
+        Cache::forget("book.list");
+        return $createResult;
     }
 }

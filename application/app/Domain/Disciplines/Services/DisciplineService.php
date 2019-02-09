@@ -38,7 +38,8 @@ class DisciplineService
             throw new DisciplineEditException(implode("\n", $validation->errors()->all()));
         }
         
-        return $this->disciplineRepo->create($data);
+        $userCache = new DisciplineCacheRepository($this->disciplineRepo);
+        return $userCache->create($data);
     }
 
     public function update($identify, array $data): bool
@@ -54,8 +55,8 @@ class DisciplineService
         if ($this->disciplineRepo->find($identify) === null) {
             throw new DisciplineNotFoundException('Disciplina não encontrada');
         }
-
-        return $this->disciplineRepo->update($identify, $data);
+        $userCache = new DisciplineCacheRepository($this->disciplineRepo);
+        return $userCache->update($identify, $data);
     }
 
     public function getById($identify): DisciplineResource

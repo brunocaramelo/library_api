@@ -31,7 +31,7 @@ class BooksController extends Controller
         try {
             $body = json_decode($request->getContent(), true);
             $bookService = new BookService();
-            $bookService->update($request->id, $body);
+            $bookService->update($request->route('id'), $body);
             return response()->json(['message'=>'Livro Editado com sucesso']);
         } catch (BookEditException $error) {
             return response()->json(['error'=>$error->getMessage()], 422);

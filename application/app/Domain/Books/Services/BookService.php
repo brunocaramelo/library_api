@@ -44,7 +44,8 @@ class BookService
         $this->verifyAuthors($data['author']);
         $this->verifyDiscliplines($data['discipline']);
 
-        $bookInstance = $this->bookRepo->create($data);
+        $userCache = new BookCacheRepository($this->bookRepo);
+        $bookInstance = $userCache->create($data);
         return $bookInstance;
     }
     
@@ -67,7 +68,8 @@ class BookService
         $this->verifyAuthors($data['author']);
         $this->verifyDiscliplines($data['discipline']);
 
-        return $this->bookRepo->update($identify, $data);
+        $userCache = new BookCacheRepository($this->bookRepo);
+        return $userCache->update($identify, $data);
     }
 
     public function getById($identify): BookResource

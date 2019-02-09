@@ -29,7 +29,7 @@ class DisciplinesController extends Controller
         try {
             $body = json_decode($request->getContent(), true);
             $disciplineService = new DisciplineService();
-            $disciplineService->update($request->id, $body);
+            $disciplineService->update($request->route('id'), $body);
             return response()->json(['message'=>'Disciplina Editada com sucesso']);
         } catch (DisciplineEditException $error) {
             return response()->json(['error'=>$error->getMessage()], 422);

@@ -2,8 +2,6 @@
 
 namespace App\Domain\Authors\Services;
 
-use Illuminate\Support\Facades\Hash;
-
 use App\Domain\Authors\Validators\AuthorValidator;
 use App\Domain\Authors\Exceptions\AuthorEditException;
 use App\Domain\Authors\Exceptions\AuthorNotFoundException;
@@ -37,8 +35,8 @@ class AuthorService
         if ($validation->fails() === true) {
             throw new AuthorEditException(implode("\n", $validation->errors()->all()));
         }
-        
-        return $this->authorRepo->create($data);
+        $userCache = new AuthorCacheRepository($this->authorRepo);
+        return $userCache->create($data);
     }
 
     public function update($identify, array $data): bool
@@ -54,8 +52,8 @@ class AuthorService
         if ($this->authorRepo->find($identify) === null) {
             throw new AuthorNotFoundException('Autor não encontrado');
         }
-
-        return $this->authorRepo->update($identify, $data);
+        $userCache = new AuthorCacheRepository($this->authorRepo);
+        return $userCache->update($identify, $data);
     }
 
     public function getById($identify): AuthorResource
