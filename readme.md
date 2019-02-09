@@ -2,7 +2,7 @@ EXECUTAR ANTES DA APLICAÇÃO CLIENTE
 
 Disponivel no Heroku com o seguinte Link:
 
-http://localhost/api/v1/authors/ e coverage report em: http://localhost/storage/_reports.zip
+https://api-library-testcase.herokuapp.com/api/v1/authors/ e coverage report em: https://api-library-testcase.herokuapp.com/storage/_reports.zip
 
 
 
@@ -60,7 +60,7 @@ LOCAL:
 http://localhost/api/v1/authors/
 
 HEROKU:
-
+https://api-library-testcase.herokuapp.com/api/v1/authors/
 
 COVERAGE REPORT:
 
@@ -68,3 +68,4 @@ LOCAL:
 http://localhost/storage/_reports.zip
 
 HEROKU:
+https://api-library-testcase.herokuapp.com/storage/_reports.zip
