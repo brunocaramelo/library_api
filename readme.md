@@ -91,6 +91,13 @@ Após instalar o endereço de acesso é:
 
 ## Changelog
 
+### v1.5.0
+#### Implantação no Heroku
+- Correções de bugs
+- Ajustes no read.me
+- Ajustes no schema do Swagger
+- Disponibilização da aplicação em : http://api-library-testcase.herokuapp.com/api/documentation
+
 ### v1.4.0
 #### Instalação do Swagger e ajustes finais
 - Ajustes em Books
