@@ -19,6 +19,8 @@ Unit\Book
  [x] Update book success
  [x] Update book fail name
  [x] Update book fail not found
+ [x] Exclude book success
+ [x] Exclude book fail not find
 
 Unit\Discipline
  [x] All disciplines
@@ -54,6 +56,8 @@ Feature\BookApi
  [x] Post fail edit
  [x] Post fail edit author not found
  [x] Post fail edit descipline not found
+ [x] Delete fail not found
+ [x] Delete success
 
 Feature\DisciplineApi
  [x] Get one author

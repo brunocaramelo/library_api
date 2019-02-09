@@ -146,26 +146,45 @@ class BookTest extends TestCase
         $this->assertEquals($final, $expected);
     }
     /**
-     * @expectedException         \App\Domain\Books\Exceptions\BookNotFoundException
-     * @expectedExceptionMessage Livro não encontrado
+     * @expectedException          App\Domain\Books\Exceptions\BookNotFoundException
+     * @expectedExceptionMessage  Livro não encontrado
      */
     public function testUpdateBookFailNotFound()
     {
         $expected = $this->returnListSeedResult()[0];
         $expected['id'] = 99;
-        $expected['isbn'] = 88899;
+        $expected['isbn'] = 88899789789;
         
         $mock = $expected;
         $mock['author'] = [1];
         $mock['discipline'] = [1,2];
-
+        
         $authorService = new BookService();
         $authorService->update($expected['id'], $expected);
         $final = $authorService->getById($expected['id'])->toArray([]);
         $expected['id'] = $expected['id'];
+        
         $this->assertEquals($final, $expected);
     }
- 
+    
+    public function testExcludeBookSuccess()
+    {
+        $userService = new BookService();
+        $userService->remove(2);
+        
+        $this->assertEquals(true, true);
+    }
+
+    /**
+     * @expectedException         \App\Domain\Books\Exceptions\BookNotFoundException
+     * @expectedExceptionMessage Livro não encontrado
+     */
+    public function testExcludeBookFailNotFind()
+    {
+        $userService = new BookService();
+        $userService->remove(99);
+    }
+
     private function returnListSeedResult()
     {
         return json_decode('[{"id":1,"isbn":"7898592131010","title":"Livro Falso 1","cover":"https:\/\/s3-us-west-2.amazonaws.com\/catalogo.ftd.com.br\/files\/uploads\/11603117CJ_resized_596x800.jpg","author":["Clenir Bellezi de Oliveira"],"level":"Ensino m\u00e9dio","discipline":["Literatura","Matem\u00e1tica"],"price":"239"},{"id":2,"isbn":"7898592131058","title":"Livro Falso 2","cover":"https:\/\/s3-us-west-2.amazonaws.com\/catalogo.ftd.com.br\/files\/uploads\/11603118CJ_resized_596x800.jpg","author":["Maria Falsa","Regina Falsa"],"level":"Ensino m\u00e9dio","discipline":["L\u00edngua Portuguesa"],"price":"219"},{"id":3,"isbn":"7898592130853","title":"Livro Falso 3","cover":"https:\/\/s3-us-west-2.amazonaws.com\/catalogo.ftd.com.br\/files\/uploads\/11604000CJ_resized_596x800.jpg","author":["Mauro Falso"],"level":"Ensino m\u00e9dio","discipline":["Gram\u00e1tica","L\u00edngua Portuguesa"],"price":"249"}]',true);

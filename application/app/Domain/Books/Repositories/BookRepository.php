@@ -54,4 +54,10 @@ class BookRepository implements BaseRepositoryContract
     {
         return $book->disciplines()->sync($lisDisciplines);
     }
+
+    public function remove($identify)
+    {
+        $bookSave = $this->book->find( $identify );
+        return $bookSave->fill( [ 'status' => '0' ] )->save();
+    }
 }

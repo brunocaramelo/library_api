@@ -126,7 +126,7 @@ class BookApiTest extends TestCase
     public function testPutFailNotFound()
     {
         $this->json('PUT', '/api/v1/book/99', [
-                                                "isbn"=> 7897572140847,
+                                                "isbn"=> 7897572140847987897,
                                                 "title"=> "Livro Falso 3 Que mudei",
                                                 "cover"=> "https://s3-us-west-2.amazonaws.com/catalogo.ftd.com.br/files/uploads/11604000CJ_resized_596x800.jpg",
                                                 "author"=> [
@@ -303,5 +303,24 @@ class BookApiTest extends TestCase
                         "error"=> "Disciplina não encontrada",
                     ]);
     }
+
+    public function testDeleteFailNotFound()
+    {
+        $this->json("DELETE", '/api/v1/book/99', [])
+                ->assertStatus(404)
+                ->assertJson([
+                        "error"=> "Livro não encontrado",
+                    ]);
+    }
+    
+    public function testDeleteSuccess()
+    {
+        $this->json("DELETE", '/api/v1/book/2', [])
+                ->assertStatus(200)
+                ->assertJson([
+                        "data"=> "Livro Removido com sucesso",
+                    ]);
+    }
+
 
 }

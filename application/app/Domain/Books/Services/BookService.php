@@ -61,7 +61,7 @@ class BookService
             throw new BookEditException(implode("\n", $validation->errors()->all()));
         }
         if ($this->bookRepo->find($identify) === null) {
-            throw new BookEditException('Livro não encontrado');
+            throw new BookNotFoundException('Livro não encontrado');
         }
 
         $this->verifyAuthors($data['author']);
@@ -96,5 +96,17 @@ class BookService
             $disciplineService->getById($disciplineId);
         }
     }
+
+    public function remove($identify)
+    {
+        $userCache = new BookCacheRepository($this->bookRepo);
+        $found = $userCache->find($identify);
+        
+        if ($found === null) {
+            throw new BookNotFoundException('Livro não encontrado');
+        }
+        return $userCache->remove($identify);
+    }
+
    
 }

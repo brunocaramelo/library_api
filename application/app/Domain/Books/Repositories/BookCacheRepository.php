@@ -45,4 +45,12 @@ class BookCacheRepository implements BaseCacheRepositoryContract
         Cache::forget("book.list");
         return $createResult;
     }
+
+    public function remove($identify)
+    {
+        $createResult = $this->books->remove($identify);
+        Cache::forget("book.{$identify}");
+        Cache::forget("book.list");
+        return $createResult;
+    }
 }

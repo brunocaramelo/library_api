@@ -79,6 +79,11 @@ Route::group(['prefix' => 'v1'], function ()
             'uses' => '\App\Domain\Books\Controllers\BooksController@store'
         ]);
 
+        Route::delete('/{id}',
+            [ 'as' => 'book-store',
+            'uses' => '\App\Domain\Books\Controllers\BooksController@remove'
+        ]);
+
         Route::post('/',
             [ 'as' => 'book-create',
             'uses' => '\App\Domain\Books\Controllers\BooksController@create'
