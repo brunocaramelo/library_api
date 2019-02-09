@@ -9,7 +9,7 @@
       "email": "bruno.caramelo5@gmail.com"
     }
   },
-  "host": "localhost:4001/api",
+  "host": "localhost/api",
   "basePath": "/v1",
   "tags": [
     {
