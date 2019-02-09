@@ -20,8 +20,13 @@ class DisciplinesController extends Controller
     
     public function getById(Request $request)
     {
-        $disciplineService = new DisciplineService();
-        return response()->json(['data' => $disciplineService->getById($request->id)]);
+        try {
+            $disciplineService = new DisciplineService();
+            $item = $disciplineService->getById($request->id);
+            return response()->json(['data' => $item]);
+        } catch (DisciplineNotFoundException $error) {
+            return response()->json(['error'=>$error->getMessage()], 404);
+        }
     }
     
     public function store(Request $request)

@@ -20,8 +20,13 @@ class AuthorsController extends Controller
     
     public function getById(Request $request)
     {
-        $authorService = new AuthorService();
-        return response()->json(['data' => $authorService->getById($request->id)]);
+        try {
+            $authorService = new AuthorService();
+            $item = $authorService->getById($request->id);
+            return response()->json(['data' => $item ]);
+        } catch (AuthorNotFoundException $error) {
+            return response()->json(['error'=>$error->getMessage()], 404);
+        }
     }
     
     public function store(Request $request)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1549734023">
-  <project timestamp="1549734023">
+<coverage generated="1549738956">
+  <project timestamp="1549738956">
     <package name="App\Domain\Authors\Controllers">
       <file name="/var/www/html/library_api/application/app/Domain/Authors/Controllers/AuthorsController.php">
         <class name="App\Domain\Authors\Controllers\AuthorsController" namespace="App\Domain\Authors\Controllers">

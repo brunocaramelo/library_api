@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('storage/{filename}', function ($filename)
+Route::get('coverage-report', function ()
 {
-    $path = storage_path('app/public/' . $filename);
+    $path = storage_path('data_import/_reports.zip');
     
     $file = File::get($path);
     $type = File::mimeType($path);

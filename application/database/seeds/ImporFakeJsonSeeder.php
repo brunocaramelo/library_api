@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Domain\Books\Entities\BookEntity as Book;
 use App\Domain\Authors\Entities\AuthorEntity as Author;
 use App\Domain\Disciplines\Entities\DisciplineEntity as Discipline;
-use App\Domain\Levels\Entities\LevelEntity as Level;
+
 use Illuminate\Support\Facades\Storage;
 
 class ImporFakeJsonSeeder extends Seeder
@@ -23,7 +23,7 @@ class ImporFakeJsonSeeder extends Seeder
 
     private function importByJsonFile()
     {
-        $contents = Storage::disk('local')->get('data_import/origin-data-fake.json');
+        $contents = Storage::disk('data_import')->get('origin-data-fake.json');
         $this->importDataFromJsonDecoded(json_decode($contents, true));
     }
     

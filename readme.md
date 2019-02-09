@@ -2,10 +2,18 @@ EXECUTAR ANTES DA APLICAÇÃO CLIENTE
 
 Disponivel no Heroku com o seguinte Link:
 
-https://api-library-testcase.herokuapp.com/api/v1/authors/ e coverage report em:
+http://api-library-testcase.herokuapp.com/api/documentation e coverage report em:
+
+http://api-library-testcase.herokuapp.com/coverage-report
 
 
-
+OBSERVAÇÃO:
+    Caso queira fazer um teste local com o uso do Swagger será necessario alterar o seguinte arquivo
+        - /application/storage/api-docs/api-docs.json
+        Linha 12: "host": 
+            DE : "api-library-testcase.herokuapp.com/api",
+            PARA : "localhost/api",
+            
 
 Aplicação simples de CRUD de usuários utilizando técnicas que podem ser utilizadas com CI/CD
 para gerencimento de ambientes com o uso de:
@@ -58,9 +66,8 @@ O mesmo pode ser rodado em uma unica vez com o comando:
 APOS RODAR A aplicação estara disponivel em 
 
 LOCAL:
-http://localhost/api/v1/authors/
+http://localhost/api/documentation
 
 HEROKU:
-https://api-library-testcase.herokuapp.com/api/v1/authors/
+http://api-library-testcase.herokuapp.com/api/documentation
 
-COVERAGE REPORT:

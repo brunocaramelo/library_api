@@ -4,12 +4,12 @@
     "description": "Exemplar de teste de biblioteca",
     "version": "1.0.0",
     "title": "Teste de biblioteca",
-    "termsOfService": "http://swagger.io/terms/",
+    "termsOfService": "https://swagger.io/terms/",
     "contact": {
       "email": "bruno.caramelo5@gmail.com"
     }
   },
-  "host": "api-library-testcase.herokuapp.com/api/",
+  "host": "api-library-testcase.herokuapp.com/api",
   "basePath": "/v1",
   "tags": [
     {
@@ -17,13 +17,12 @@
       "description": "Exemplo de livraria documentado por aqui",
       "externalDocs": {
         "description": "Verifique mais",
-        "url": "http://swagger.io"
+        "url": "https://swagger.io"
       }
     }
   ],
   "schemes": [
-    "http",
-    "https"
+      "http"
   ],
   "paths": {
     "/authors": {
@@ -418,7 +417,7 @@
   "securityDefinitions": {
     "petstore_auth": {
       "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "authorizationUrl": "https://petstore.swagger.io/oauth/dialog",
       "flow": "implicit",
       "scopes": {
         "write:pets": "modify pets in your account",
@@ -481,7 +480,7 @@
         },
         "cover": {
           "type": "string",
-          "example": "http://image.where.com"
+          "example": "https://image.where.com"
         },
         "author": {
           "type": "array",
@@ -515,6 +514,6 @@
   },
   "externalDocs": {
     "description": "Find out more about Swagger",
-    "url": "http://swagger.io"
+    "url": "https://swagger.io"
   }
 }

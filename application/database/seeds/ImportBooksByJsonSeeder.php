@@ -5,7 +5,6 @@ use Illuminate\Database\Seeder;
 use App\Domain\Books\Entities\BookEntity as Book;
 use App\Domain\Authors\Entities\AuthorEntity as Author;
 use App\Domain\Disciplines\Entities\DisciplineEntity as Discipline;
-use App\Domain\Levels\Entities\LevelEntity as Level;
 
 class ImportBooksByJsonSeeder extends Seeder
 {
@@ -21,7 +20,7 @@ class ImportBooksByJsonSeeder extends Seeder
 
     private function importByJsonFile()
     {
-        $contents = Storage::disk('local')->get('data_import/origin-data.json');
+        $contents = Storage::disk('data_import')->get('origin-data.json');
         $this->importDataFromJsonDecoded(json_decode($contents, true));
     }
     
