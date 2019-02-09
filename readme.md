@@ -1,5 +1,11 @@
 EXECUTAR ANTES DA APLICAÇÃO CLIENTE
 
+Disponivel no Heroku com o seguinte Link:
+
+http://localhost/api/v1/authors/ e coverage report em: http://localhost/storage/_reports.zip
+
+
+
 Aplicação simples de CRUD de usuários utilizando técnicas que podem ser utilizadas com CI/CD
 para gerencimento de ambientes com o uso de:
 
@@ -10,6 +16,7 @@ para gerencimento de ambientes com o uso de:
     - REDIS
     - SQLITE ( para Suite de testes / in memory )
     - LARAVEL FRAMEWORK
+    - SWAGGER
 
     A aplicação é separada pelos seguintes conteineres
     - mysql
@@ -18,20 +25,20 @@ para gerencimento de ambientes com o uso de:
     - web / nginx
 
 1- Baixar repositório 
-    - git clone https://github.com/brunocaramelo/employee-test-case.git
+    - git clone https://github.com/brunocaramelo/library_api_.git
 
-2 - VERIFICAR  SE AS PORTAS 4001 E 3306 ESTÃO OCUPADAS,
+2 - VERIFICAR  SE AS PORTAS 80 E 3306 ESTÃO OCUPADAS,
 
 
 3 - ENTRAR NO DIRETORIO BASE DA APLICACAO RODAR OS COMANDOS 
     
     1 - sudo docker-compose up -d;
 
-    2 - sudo docker exec -t php-emp /var/www/html/artisan migrate;
+    2 - sudo docker exec -t php-library /var/www/html/artisan migrate;
 
-    3 - sudo docker exec -t php-emp /var/www/html/artisan db:seed;
+    3 - sudo docker exec -t php-library /var/www/html/artisan db:seed;
 
-    4 - sudo docker exec -t php-emp phpunit;
+    4 - sudo docker exec -t php-library phpunit;
 
     1 -  para que as imagens sejam armazenandas e executadas e subir as instancias
     
@@ -45,23 +52,19 @@ para gerencimento de ambientes com o uso de:
      
 O mesmo pode ser rodado em uma unica vez com o comando:
 
-        sudo docker-compose up -d; sudo docker exec -t php-emp /var/www/html/artisan migrate; sudo docker exec -t php-emp /var/www/html/artisan db:seed; sudo docker exec -t php-emp phpunit;
+        sudo docker-compose up -d; sudo docker exec -t php-library /var/www/html/artisan migrate; sudo docker exec -t php-library /var/www/html/artisan db:seed; sudo docker exec -t php-library phpunit;
 
 APOS RODAR A aplicação estara disponivel em 
 
-http://localhost:4001/api/v1/employees/
+LOCAL:
+http://localhost/api/v1/authors/
+
+HEROKU:
 
 
-Rotas: 
-GET - api/v1/reports/employees/ (Listar Relatorio de Funcionarios) 
+COVERAGE REPORT:
 
-GET - api/v1/employees/ (Listar Funcionarios) 
+LOCAL:
+http://localhost/storage/_reports.zip
 
-GET - api/v1/employee/{id} (Detalhar Funcionario) 
-
-PUT - api/v1/employee/{id} (Editar Funcionario) 
-
-POST - api/v1/employee/ (Criar Funcionario ) 
-
-DELETE - api/v1/employee/{id} (Excluir Funcionario)
-
+HEROKU:
