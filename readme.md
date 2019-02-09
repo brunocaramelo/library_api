@@ -46,7 +46,7 @@ A aplicação é separada pelos seguintes conteineres
     Procedimentos de Instação da aplicação para uso local
 
 1- Baixar repositório 
-    - git clone https://github.com/brunocaramelo/library_api_.git
+    - git clone https://github.com/brunocaramelo/library_api.git
 
 2 - Verificar se as portas 80 e 3306 estão ocupadas.
 
@@ -70,7 +70,7 @@ A aplicação é separada pelos seguintes conteineres
         - testes de API  
         - testes de unidade
      
-O mesmo pode ser rodado em uma unica vez com o comando:
+O mesmo pode ser executado em uma unica vez com o comando:
 
         sudo docker-compose up -d; sudo docker exec -t php-library /var/www/html/artisan migrate; sudo docker exec -t php-library /var/www/html/artisan db:seed; sudo docker exec -t php-library phpunit;
 
