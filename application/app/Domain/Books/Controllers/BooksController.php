@@ -22,8 +22,12 @@ class BooksController extends Controller
     
     public function getById(Request $request)
     {
-        $bookService = new BookService();
-        return response()->json(['data' => $bookService->getById($request->id)], 200, [], JSON_NUMERIC_CHECK);
+        try {
+            $bookService = new BookService();
+            return response()->json(['data' => $bookService->getById($request->id)], 200, [], JSON_NUMERIC_CHECK);
+        } catch (BookNotFoundException $error) {
+            return response()->json(['error'=>$error->getMessage()], 404);
+        }
     }
     
     public function store(Request $request)

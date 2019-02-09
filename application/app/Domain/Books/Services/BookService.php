@@ -60,9 +60,8 @@ class BookService
         if ($validation->fails()) {
             throw new BookEditException(implode("\n", $validation->errors()->all()));
         }
-        
         if ($this->bookRepo->find($identify) === null) {
-            throw new BookNotFoundException('Livro não encontrado');
+            throw new BookEditException('Livro não encontrado');
         }
 
         $this->verifyAuthors($data['author']);
