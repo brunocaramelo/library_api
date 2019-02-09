@@ -15,28 +15,28 @@ http://api-library-testcase.herokuapp.com/coverage-report
 
 ## Especificações Técnicas
 
-    Esta aplicação conta com as seguintes especificações abaixo: 
-    
-    | Ferramenta | Versão |
-    | --- | --- |
-    | Docker | 1.13.1 |
-    | Docker Compose | 1.22.0 |
-    | Nginx | 1.15.2 |
-    | PHP | 7.2.11 |
-    | Mariabd | 10.3.8 |
-    | Redis | 5.0.0 |
-    | Sqlite | 3.16.2 |
-    | Laravel Framework | 5.7.* |
-    | Swagger | 2.*.* |
-    
-    A aplicação é separada pelos seguintes conteineres
+Esta aplicação conta com as seguintes especificações abaixo: 
 
-    | Service | Image |
-    | --- | --- |
-    | mysql | mariadb:latest |
-    | redis | redis:alpine |
-    | php | laravel:php-fpm |
-    | web (nginx) | nginx:alpine |
+| Ferramenta | Versão |
+| --- | --- |
+| Docker | 1.13.1 |
+| Docker Compose | 1.22.0 |
+| Nginx | 1.15.2 |
+| PHP | 7.2.11 |
+| Mariabd | 10.3.8 |
+| Redis | 5.0.0 |
+| Sqlite | 3.16.2 |
+| Laravel Framework | 5.7.* |
+| Swagger | 2.*.* |
+
+A aplicação é separada pelos seguintes conteineres
+
+| Service | Image |
+| --- | --- |
+| mysql | mariadb:latest |
+| redis | redis:alpine |
+| php | laravel:php-fpm |
+| web (nginx) | nginx:alpine |
 
 ## Requisitos
     - Docker
