@@ -4,7 +4,7 @@ upstream fastcgi_backend {
 }
 
 server {
-    listen       4001;
+    listen       80;
     index index.php;
     error_log  /var/log/nginx/error.log;
     access_log /var/log/nginx/access.log;

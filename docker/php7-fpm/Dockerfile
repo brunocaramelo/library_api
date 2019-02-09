@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install \
       intl \
       mbstring \
-      mcrypt \
       pcntl \
       pdo_mysql \
       pdo_pgsql \
@@ -21,15 +20,16 @@ RUN apt-get update && apt-get install -y \
       pgsql \
       zip \
       opcache
+      
+RUN yes | pecl install xdebug 
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # install phpunit
-RUN curl https://phar.phpunit.de/phpunit.phar -L > phpunit.phar \
-  && chmod +x phpunit.phar \
-  && mv phpunit.phar /usr/local/bin/phpunit \
-  && phpunit --version
+RUN curl -fsSL https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer \
+    && composer global require phpunit/phpunit ^7.5 --no-progress --no-scripts --no-interaction
 
 # install cron
 RUN apt-get update && apt-get -y install rsyslog
@@ -39,8 +39,6 @@ RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
 WORKDIR /var/www/html
 
-RUN chown -R www-data:www-data \
-        /var/www/html/storage \
-        /var/www/html/bootstrap/cache
 
-RUN php artisan optimize
+ENV PATH /root/.composer/vendor/bin:$PATH
+CMD ["phpunit"]

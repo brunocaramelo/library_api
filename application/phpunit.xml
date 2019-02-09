@@ -19,7 +19,7 @@
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./app/Domain</directory>
         </whitelist>
     </filter>
     <php>
@@ -29,5 +29,16 @@
         <env name="MAIL_DRIVER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_CONNECTION" value="sqlite_memory"/>
+        <env name="DB_DATABASE" value=":memory:"/>>
     </php>
+    <logging>
+        <log type="coverage-clover" target="tests/_reports/logs/clover.xml"/>
+        <log type="coverage-html" target="tests/_reports/coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70" />
+        <log type="testdox-text" target="tests/_reports/testdox/executed.txt"/>
+    </logging>
+    <listeners>
+        <listener class="Tests\DatabaseTestListener"/>
+    </listeners>
 </phpunit>

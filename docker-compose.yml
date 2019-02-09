@@ -29,10 +29,11 @@ services:
       - mysql
     command: bash -c "sh crontab-install.sh && php-fpm  && php-fpm -v"
     environment:
+      APP_ENV: local
       DB_PORT: 3306
-      DB_USERNAME: root
+      DB_USERNAME: sandbox
       DB_DATABASE: library_admin
-      DB_PASSWORD: testes
+      DB_PASSWORD: sandbox
       DB_HOST: mysql
       MYSQL_HOST: mysql
       REDIS_HOST: redis
@@ -54,7 +55,7 @@ services:
     volumes:
       - ./docker/nginx/default:/etc/nginx/conf.d/default.conf
     ports:
-      - 4001:4001
+      - 80:80
 
 volumes:
   redis-data:
