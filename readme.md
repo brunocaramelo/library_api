@@ -82,7 +82,7 @@ Caso queira fazer um teste local com o uso do Swagger será necessario alterar o
         DE : "api-library-testcase.herokuapp.com/api",
         PARA : "localhost/api",
 
-## Pós Instalaçao
+## Pós Instalação
 
 Após instalar o endereço de acesso é:
 
@@ -91,35 +91,35 @@ Após instalar o endereço de acesso é:
 
 ## Changelog
 
-###v1.4.0
-####Instalação do Swagger e ajustes finais
+### v1.4.0
+#### Instalação do Swagger e ajustes finais
 - Ajustes em Books
 - Instalação do Swagger
 - Ajustes de CI/CD
 
-###v1.3.0
-####Módulo de Livros
+### v1.3.0
+#### Módulo de Livros
 - Ajustes de Disciplinas e Autores
 - Finalização da cobertura de testes
 - Módulo de Livos
 
-###v1.2.0
-####Módulos de Disciplina e Autores
+### v1.2.0
+#### Módulos de Disciplina e Autores
 - Adição de Módulos de Disciplinas e Autores
 - Testes Unitários e de API
 - Adicionado Coverage Report
 - Seeder de teste
 - API pública com módulos de Disciplina e Autores
 
-###1.1.0
-####Migrations e Seeders
+### 1.1.0
+#### Migrations e Seeders
 - Estruturação do schema
 - Execução da migração para a base de dados
 - Criação e estruturação
 - Execução dos Seeders com base no JSON exposto (storage/data_import/data-origin.json)
 
-###v1.0.0
-####Framework e Deploy
+### v1.0.0
+#### Framework e Deploy
 
 - Framework Laravel 5.7
 - Docker utilizando versão 1.13
