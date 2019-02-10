@@ -15,8 +15,7 @@ else
     
     sleep 1
     
-    php /var/www/html/artisan key:generate;
-    php /var/www/html/artisan config:cache;
+    php /var/www/html/artisan config:clear;
 fi
 
 
