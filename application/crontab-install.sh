@@ -13,6 +13,9 @@ else
 	echo "$file not found. generate key and cache"
     cp /var/www/html/.env.example /var/www/html/.env
     
+    sleep 1
+    
+    php /var/www/html/artisan config:clear;
 fi
 
 

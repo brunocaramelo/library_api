@@ -32,9 +32,6 @@ Unit\Discipline
  [x] Update discipline fail name
  [x] Update discipline fail not found
 
-Unit\Example
- [x] Basic test
-
 Feature\AuthorApi
  [x] Get one author
  [x] Get all authors
@@ -67,7 +64,4 @@ Feature\DisciplineApi
  [x] Put fail edit
  [x] Post success
  [x] Post fail edit
-
-Feature\Example
- [x] Basic test
 
