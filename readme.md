@@ -69,10 +69,6 @@ A aplicação é separada pelos seguintes conteineres
     4 - para que o framework execute a suite de testes.
         - testes de API  
         - testes de unidade
-     
-O mesmo pode ser executado em uma unica vez com o comando:
-
-        sudo docker-compose up -d; sudo docker exec -t php-library /var/www/html/artisan migrate; sudo docker exec -t php-library /var/www/html/artisan db:seed; sudo docker exec -t php-library phpunit;
 
 ### Observações:
 

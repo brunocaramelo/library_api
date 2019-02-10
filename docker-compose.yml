@@ -38,6 +38,8 @@ services:
       MYSQL_HOST: mysql
       REDIS_HOST: redis
       DEBUG: 1
+      CACHE_DRIVER: redis
+      SESSION_DRIVER: redis
       
     links:
       - mysql
