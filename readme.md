@@ -52,21 +52,34 @@ A aplicação é separada pelos seguintes conteineres
 
 3 - Entrar no diretório base da aplicação e executar os comandos abaixo:
     
-    1 - sudo docker-compose up -d;
+    1 - sudo docker-compose up -d; (LER OBSERVACAO)
 
-    2 - sudo docker exec -t php-library /var/www/html/artisan migrate;
+    2 - sudo docker exec -t php-library php /var/www/html/artisan migrate;
 
-    3 - sudo docker exec -t php-library /var/www/html/artisan db:seed;
+    3 - sudo docker exec -t php-library php /var/www/html/artisan db:seed;
 
-    4 - sudo docker exec -t php-library phpunit;
+    4 - sudo docker exec -t php-library php /var/www/html/artisan key:generate;
+    
+    5 - sudo docker exec -t php-library phpunit;
+    
 
     1 -  para que as imagens sejam armazenandas e executadas e subir as instancias
+    (OBSERVACAO) - devido a demora do composer em trazer as dependências, existem 3 alternativas,
+        
+        1 - EXECUTAR sudo docker-compose up; sem ser daemon a primeira vez, para que seja possivel verificar o andamento da instalação de dependências.
+        
+        2 - Aguardar uns 20 minutos ou pouco mais para que o comando seja efetivado. afim de evitar de autoload por exemplo.
+        
+        3 - Caso tenha algum problema de Depencias, executar o comando abaixo para garantir as mesmas.
+            sudo docker exec -t php-library composer install;
     
     2 -  para que o framework gere e aplique o mapeamento para a base de dados (SQL) podendo ser Mysql, PostGres , Oracle , SQL Serve ou SQLITE por exemplo
     
     3 -  para que o framework  aplique mudanças nos dados da base, no caso inserção de um primeiro usuário.
     
-    4 - para que o framework execute a suite de testes.
+    4 -  geração de hash key para uso do sistema como chave de validação.
+    
+    5 - para que o framework execute a suite de testes.
         - testes de API  
         - testes de unidade
      
