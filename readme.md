@@ -54,11 +54,13 @@ A aplicação é separada pelos seguintes conteineres
     
     1 - sudo docker-compose up -d;
 
-    2 - sudo docker exec -t php-library /var/www/html/artisan migrate;
+    2 - sudo docker exec -t php-library php /var/www/html/artisan migrate;
 
-    3 - sudo docker exec -t php-library /var/www/html/artisan db:seed;
+    3 - sudo docker exec -t php-library php /var/www/html/artisan db:seed;
 
-    4 - sudo docker exec -t php-library phpunit;
+    4 - sudo docker exec -t php-library php /var/www/html/artisan key:generate;
+
+    5 - sudo docker exec -t php-library phpunit;
 
     1 -  para que as imagens sejam armazenandas e executadas e subir as instancias
     
