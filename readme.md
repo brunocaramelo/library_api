@@ -40,6 +40,7 @@ A aplicação é separada pelos seguintes conteineres
 
 ## Requisitos
     - Docker
+    - Docker Daemon (Service)
     - Docker Compose
 
 ## Procedimentos de Instalação
