@@ -124,6 +124,12 @@ Após instalar o endereço de acesso é:
 
 ## Changelog
 
+### v1.6.0
+#### Release Estável
+ - Ajustes de Readme.
+ - Ajuste de orientação
+ - Correção de pequenos bugs
+
 ### v1.5.0
 #### Implantação no Heroku
 - Correções de bugs
