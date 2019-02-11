@@ -40,7 +40,8 @@ services:
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis
       DEBUG: 1
-      
+      CACHE_DRIVER: redis
+      SESSION_DRIVER: redis      
     links:
       - mysql
       - redis

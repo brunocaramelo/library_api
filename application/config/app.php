@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         L5Swagger\L5SwaggerServiceProvider::class,
+        App\Providers\AuthorServiceProvider::class,
+        App\Providers\BookServiceProvider::class,
+        App\Providers\DisciplineServiceProvider::class,
 
     ],
 
