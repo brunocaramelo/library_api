@@ -39,7 +39,5 @@ RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
 WORKDIR /var/www/html
 
-RUN chmod 775 -R /var/www/html
-
 ENV PATH /root/.composer/vendor/bin:$PATH
 CMD ["phpunit"]
