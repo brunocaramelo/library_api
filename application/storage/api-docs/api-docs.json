@@ -9,7 +9,7 @@
       "email": "bruno.caramelo5@gmail.com"
     }
   },
-  "host": "api-library-testcase.herokuapp.com/api",
+  "host": "localhost/api",
   "basePath": "/v1",
   "tags": [
     {
