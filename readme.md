@@ -63,15 +63,6 @@ A aplicação é separada pelos seguintes conteineres
     
     5 - sudo docker exec -t php-library phpunit;
 
-    6 - Para fazer um teste local com o uso da rota http://localhost/api/documentation será necessario alterar o seguinte arquivo:
-   
-        /application/storage/api-docs/api-docs.json
-            - Linha 12: "host": 
-              
-                - DE : "api-library-testcase.herokuapp.com/api",
-                
-                - PARA : "localhost/api",
-
     
 ### Descrição dos Passos
 
@@ -95,8 +86,6 @@ A aplicação é separada pelos seguintes conteineres
     5 - para que o framework execute a suite de testes.
         - testes de API  
         - testes de unidade
-    
-    6 - A Requisição na ferramenta deve ser alterada para que o serviço consumido seja o local.
      
 ### Resolução de Posséveis problemas:
 
