@@ -60,7 +60,7 @@ A aplicação é separada pelos seguintes conteineres
     3 - sudo docker exec -t php-library php /var/www/html/artisan db:seed;
 
     4 - sudo docker exec -t php-library php /var/www/html/artisan key:generate;
-
+    
     5 - sudo docker exec -t php-library phpunit;
 
     6 - Para fazer um teste local com o uso da rota http://localhost/api/documentation será necessario alterar o seguinte arquivo:
@@ -123,6 +123,12 @@ Após instalar o endereço de acesso é:
 
 
 ## Changelog
+
+### v1.6.0
+#### Release Estável
+ - Ajustes de Readme.
+ - Ajuste de orientação
+ - Correção de pequenos bugs
 
 ### v1.5.0
 #### Implantação no Heroku
