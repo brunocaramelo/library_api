@@ -19,14 +19,14 @@ class BookCacheRepository implements BaseCacheRepositoryContract
 
     public function getAll()
     {
-        return Cache::remember('book.list', 10 ,function () {
+        return Cache::remember('book.list', 10, function () {
             return $this->books->getAll();
         });
     }
   
     public function find($identify)
     {
-        return Cache::remember("book.{$identify}", 60 ,function () use ($identify) {
+        return Cache::remember("book.{$identify}", 60, function () use ($identify) {
             return $this->books->find($identify);
         });
     }

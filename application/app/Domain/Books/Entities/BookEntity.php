@@ -18,12 +18,22 @@ class BookEntity extends Model
 
     public function authors()
     {
-        return $this->belongsToMany(\App\Domain\Authors\Entities\AuthorEntity::class, 'book_authors', 'book_id', 'author_id');
+        return $this->belongsToMany(
+            \App\Domain\Authors\Entities\AuthorEntity::class,
+            'book_authors',
+            'book_id',
+            'author_id'
+        );
     }
 
     public function disciplines()
     {
-        return $this->belongsToMany(\App\Domain\Disciplines\Entities\DisciplineEntity::class, 'book_disciplines', 'book_id', 'discipline_id');
+        return $this->belongsToMany(
+            \App\Domain\Disciplines\Entities\DisciplineEntity::class,
+            'book_disciplines',
+            'book_id',
+            'discipline_id'
+        );
     }
     
     public function scopeActive($query)

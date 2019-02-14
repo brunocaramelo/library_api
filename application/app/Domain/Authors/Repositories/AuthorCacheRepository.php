@@ -19,7 +19,7 @@ class AuthorCacheRepository implements BaseCacheRepositoryContract
 
     public function getAll()
     {
-        return Cache::remember('author.list', 10 ,function () {
+        return Cache::remember('author.list', 10, function () {
             return $this->authors->getAll();
         });
     }
@@ -27,7 +27,7 @@ class AuthorCacheRepository implements BaseCacheRepositoryContract
   
     public function find($identify)
     {
-        return Cache::remember("author.{$identify}", 60 ,function () use ($identify) {
+        return Cache::remember("author.{$identify}", 60, function () use ($identify) {
             return $this->authors->find($identify);
         });
     }
@@ -46,5 +46,4 @@ class AuthorCacheRepository implements BaseCacheRepositoryContract
         Cache::forget("author.list");
         return $createResult;
     }
-    
 }

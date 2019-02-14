@@ -14,11 +14,11 @@ class BookResource extends JsonResource
             'cover' => $this->cover,
             'author' => $this->authors()->get()->map(function ($author) {
                 return $author->name;
-             })->toArray(),
+            })->toArray(),
             'level' => $this->level_name,
             'discipline' => $this->disciplines()->get()->map(function ($discipline) {
                 return $discipline->name;
-             })->toArray(),
+            })->toArray(),
             'price' => $this->price,
         ];
     }
