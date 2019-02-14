@@ -14,7 +14,12 @@ class DisciplineEntity extends Model
     
     public function books()
     {
-        return $this->belongsToMany(App\Authors\Entities\BookEntity::class, 'book_authors', 'author_id', 'discipline_id');
+        return $this->belongsToMany(
+            App\Authors\Entities\BookEntity::class,
+            'book_authors',
+            'author_id',
+            'discipline_id'
+        );
     }
     
     public function scopeActive($query)
