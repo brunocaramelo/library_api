@@ -57,7 +57,7 @@ class BookRepository implements BaseRepositoryContract
 
     public function remove($identify)
     {
-        $bookSave = $this->book->find( $identify );
-        return $bookSave->fill( [ 'status' => '0' ] )->save();
+        $bookSave = $this->book->find($identify);
+        return $bookSave->fill([ 'status' => '0' ])->save();
     }
 }

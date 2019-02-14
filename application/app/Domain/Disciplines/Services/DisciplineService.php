@@ -68,5 +68,4 @@ class DisciplineService
         }
         return new DisciplineResource($found);
     }
-   
 }

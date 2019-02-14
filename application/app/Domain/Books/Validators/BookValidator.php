@@ -50,6 +50,4 @@ class BookValidator
                             'isbn.unique'=>'Livro já cadastrado',
                             ];
     }
-
-
 }

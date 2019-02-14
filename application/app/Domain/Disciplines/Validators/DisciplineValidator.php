@@ -40,6 +40,4 @@ class DisciplineValidator
                             'name.unique'=>'Disciplina já cadastrada',
                             ];
     }
-
-
 }

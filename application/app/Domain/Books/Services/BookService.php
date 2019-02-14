@@ -107,6 +107,4 @@ class BookService
         }
         return $userCache->remove($identify);
     }
-
-   
 }

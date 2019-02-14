@@ -40,6 +40,4 @@ class AuthorValidator
                             'name.unique'=>'Autor já cadastrado',
                             ];
     }
-
-
 }

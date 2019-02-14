@@ -65,5 +65,4 @@ class AuthorService
         }
         return new AuthorResource($found);
     }
-   
 }

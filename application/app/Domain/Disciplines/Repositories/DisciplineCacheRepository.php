@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Cache;
 use App\Infrastructure\Contracts\BaseCacheRepositoryContract;
 use App\Infrastructure\Contracts\BaseRepositoryContract;
 
-
 class DisciplineCacheRepository implements BaseCacheRepositoryContract
 {
     protected $disciplines;
@@ -18,7 +17,7 @@ class DisciplineCacheRepository implements BaseCacheRepositoryContract
 
     public function getAll()
     {
-        return Cache::remember('discipline.list', 10 ,function () {
+        return Cache::remember('discipline.list', 10, function () {
             return $this->disciplines->getAll();
         });
     }
@@ -26,7 +25,7 @@ class DisciplineCacheRepository implements BaseCacheRepositoryContract
   
     public function find($identify)
     {
-        return Cache::remember("discipline.{$identify}", 60 ,function () use ($identify) {
+        return Cache::remember("discipline.{$identify}", 60, function () use ($identify) {
             return $this->disciplines->find($identify);
         });
     }
