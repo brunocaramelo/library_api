@@ -87,7 +87,7 @@ A aplicação é separada pelos seguintes conteineres
         - testes de API  
         - testes de unidade
      
-### Resolução de Posséveis problemas:
+### Resolução de possíveis problemas:
 
 #### Problemas com dependências/autoload (Passo 1)
     devido a demora do composer em trazer as dependências, existem 3 alternativas,
