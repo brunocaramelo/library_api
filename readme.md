@@ -115,6 +115,12 @@ Após instalar o endereço de acesso é:
 
 ## Changelog
 
+### v1.7.0
+#### Code Review
+ - Refatoração de código
+ - Service Providers
+ - Lints
+
 ### v1.6.0
 #### Release Estável
  - Ajustes de Readme.
