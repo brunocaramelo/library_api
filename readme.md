@@ -1,5 +1,7 @@
 # SIMPLES API DE LIVROS
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b4e2f043675e4aa7b4131714b45c3ced)](https://app.codacy.com/app/brunocaramelo/library_api?utm_source=github.com&utm_medium=referral&utm_content=brunocaramelo/library_api&utm_campaign=Badge_Grade_Settings)
+
 Aplicação simples de CRUD de Livros, Autores e Disciplinas utilizando técnicas que podem ser utilizadas com CI/CD
 para gerencimento de ambientes com o uso de:
 
