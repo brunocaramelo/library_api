@@ -11,7 +11,7 @@ class BookTest extends TestCase
 {
     use RefreshDatabase;
     use RunSeed;
-    
+
     public function setUp()
     {
         parent::setUp();
@@ -21,15 +21,15 @@ class BookTest extends TestCase
     public function testAllBooks()
     {
         $authorService = new BookService();
-  
+
         $this->assertEquals($authorService->getAll()->toArray([]), $this->returnListSeedResult());
     }
-    
+
     public function testBookSuccess()
     {
         $authorService = new BookService();
         $idFind = 2;
-        
+
         $this->assertEquals(
             $authorService->getById($idFind)->toArray([]),
             $this->returnListSeedResult()[1]
@@ -45,12 +45,12 @@ class BookTest extends TestCase
         $idFind = 10;
         $authorService->getById($idFind)->toArray([]);
     }
-    
+
     public function testCreateBookSuccess()
     {
         $expected = $this->returnListSeedResult()[0];
         $expected['isbn'] = '4644646464664';
-        
+
         $mock = $expected;
         $mock['author'] = [1];
         $mock['discipline'] = [1,2];
@@ -59,7 +59,7 @@ class BookTest extends TestCase
         $last = $authorService->create($mock);
         $final = $authorService->getById($last->id)->toArray([]);
         $expected['id'] = $last->id;
-        
+
         $this->assertEquals($final, $expected);
     }
 
@@ -71,7 +71,7 @@ class BookTest extends TestCase
     {
         $expected = $this->returnListSeedResult()[1];
         $expected['isbn'] = '4644646464664';
-        
+
         $authorService = new BookService();
         $last = $authorService->create($expected);
         $final = $authorService->getById($last->id)->toArray([]);
@@ -109,16 +109,16 @@ class BookTest extends TestCase
         $expected['id'] = $last->id;
         $this->assertEquals($final, $expected);
     }
-    
+
     public function testUpdateBookSuccess()
     {
         $expected = $this->returnListSeedResult()[0];
         $expected['isbn'] = '4644646464664';
-        
+
         $mock = $expected;
         $mock['author'] = [1];
         $mock['discipline'] = [1,2];
-        
+
         $authorService = new BookService();
         $authorService->update($expected['id'], $mock);
         $final = $authorService->getById($expected['id'])->toArray([]);
@@ -134,7 +134,7 @@ class BookTest extends TestCase
     {
         $expected = $this->returnListSeedResult()[0];
         $expected['isbn'] = null;
-        
+
         $mock = $expected;
         $mock['author'] = [1];
         $mock['discipline'] = [1,2];
@@ -154,24 +154,24 @@ class BookTest extends TestCase
         $expected = $this->returnListSeedResult()[0];
         $expected['id'] = 99;
         $expected['isbn'] = 88899789789;
-        
+
         $mock = $expected;
         $mock['author'] = [1];
         $mock['discipline'] = [1,2];
-        
+
         $authorService = new BookService();
         $authorService->update($expected['id'], $expected);
         $final = $authorService->getById($expected['id'])->toArray([]);
         $expected['id'] = $expected['id'];
-        
+
         $this->assertEquals($final, $expected);
     }
-    
+
     public function testExcludeBookSuccess()
     {
         $userService = new BookService();
         $userService->remove(2);
-        
+
         $this->assertEquals(true, true);
     }
 
@@ -183,6 +183,14 @@ class BookTest extends TestCase
     {
         $userService = new BookService();
         $userService->remove(99);
+    }
+
+    public function testShowBookScope()
+    {
+        $authorEnt = new \App\Domain\Books\Entities\BookEntity();
+        $firstBook = $authorEnt->active()->first();
+        $expected = "Livro Falso 1";
+        $this->assertEquals($firstBook->title, $expected);
     }
 
     private function returnListSeedResult()
