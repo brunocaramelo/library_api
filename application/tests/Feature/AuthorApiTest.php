@@ -17,7 +17,7 @@ class AuthorApiTest extends TestCase
         $this->runSeed();
     }
 
-   
+
     public function testGetOneAuthor()
     {
         $this->get('/api/v1/author/2', [ ])
@@ -30,6 +30,15 @@ class AuthorApiTest extends TestCase
                                 "name"=> "Maria Falsa",
                             ]
                     ]);
+    }
+
+    public function testGetOneNotFound()
+    {
+        $this->get('/api/v1/author/200', [ ])
+                ->assertStatus(404)
+                ->assertJson([
+                    "error"=> "Autor não encontrado",
+                ]);
     }
 
     public function testGetAllAuthors()
@@ -58,7 +67,7 @@ class AuthorApiTest extends TestCase
                         ]
             ]);
     }
-    
+
     public function testPutSuccess()
     {
         $this->json('PUT', '/api/v1/author/2', ['name' => 'Sally'])

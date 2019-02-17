@@ -18,7 +18,7 @@ class DisciplineApiTest extends TestCase
         $this->runSeed();
     }
 
-   
+
     public function testGetOneAuthor()
     {
         $this->get('/api/v1/discipline/2', [ ])
@@ -31,6 +31,15 @@ class DisciplineApiTest extends TestCase
                                 "name"=> "Matemática",
                             ]
                     ]);
+    }
+
+    public function testGetOneAuthorNotFound()
+    {
+        $this->get('/api/v1/discipline/2000', [ ])
+                ->assertStatus(404)
+                ->assertJson([
+                    "error"=> "Disciplina não encontrada",
+                ]);
     }
 
     public function testGetAllAuthors()
@@ -59,7 +68,7 @@ class DisciplineApiTest extends TestCase
                         ]
             ]);
     }
-    
+
     public function testPutSuccess()
     {
         $this->json('PUT', '/api/v1/discipline/2', ['name' => 'Religiao'])

@@ -7,6 +7,7 @@ Unit\Author
  [x] Update author success
  [x] Update author fail name
  [x] Update author fail not found
+ [x] Show books
 
 Unit\Book
  [x] All books
@@ -21,6 +22,7 @@ Unit\Book
  [x] Update book fail not found
  [x] Exclude book success
  [x] Exclude book fail not find
+ [x] Show book scope
 
 Unit\Discipline
  [x] All disciplines
@@ -31,9 +33,11 @@ Unit\Discipline
  [x] Update discipline success
  [x] Update discipline fail name
  [x] Update discipline fail not found
+ [x] Show books
 
 Feature\AuthorApi
  [x] Get one author
+ [x] Get one not found
  [x] Get all authors
  [x] Put success
  [x] Put fail not found
@@ -43,6 +47,7 @@ Feature\AuthorApi
 
 Feature\BookApi
  [x] Get one book
+ [x] Get one book fail not found
  [x] Get all books
  [x] Put success
  [x] Put fail not found
@@ -58,6 +63,7 @@ Feature\BookApi
 
 Feature\DisciplineApi
  [x] Get one author
+ [x] Get one author not found
  [x] Get all authors
  [x] Put success
  [x] Put fail not found

@@ -18,7 +18,7 @@ class BookApiTest extends TestCase
         $this->runSeed();
     }
 
-   
+
     public function testGetOneBook()
     {
         $this->get('/api/v1/book/2', [ ])
@@ -41,7 +41,16 @@ class BookApiTest extends TestCase
                             ],
                             "price"=> 219
                         ]
-                    
+
+                    ]);
+    }
+
+    public function testGetOneBookFailNotFound()
+    {
+        $this->get('/api/v1/book/2000', [ ])
+                ->assertStatus(404)
+                ->assertJson([
+                        "error"=> "Livro não encontrado",
                     ]);
     }
 
@@ -100,7 +109,7 @@ class BookApiTest extends TestCase
                         ]
             ]);
     }
-    
+
     public function testPutSuccess()
     {
         $this->json('PUT', '/api/v1/book/2', [
@@ -312,7 +321,7 @@ class BookApiTest extends TestCase
                         "error"=> "Livro não encontrado",
                     ]);
     }
-    
+
     public function testDeleteSuccess()
     {
         $this->json("DELETE", '/api/v1/book/2', [])

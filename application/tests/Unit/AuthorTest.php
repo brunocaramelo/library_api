@@ -11,7 +11,7 @@ class AuthorTest extends TestCase
 {
     use RefreshDatabase;
     use RunSeed;
-    
+
     public function setUp()
     {
         parent::setUp();
@@ -23,12 +23,12 @@ class AuthorTest extends TestCase
         $authorService = new AuthorService();
         $this->assertEquals($authorService->getAll()->toArray([]), $this->returnListSeedResult());
     }
-    
+
     public function testAuthorSuccess()
     {
         $authorService = new AuthorService();
         $idFind = 2;
-        
+
         $this->assertEquals(
             $authorService->getById($idFind)->toArray([]),
             $this->returnListSeedResult()[1]
@@ -44,7 +44,7 @@ class AuthorTest extends TestCase
         $idFind = 10;
         $authorService->getById($idFind)->toArray([]);
     }
-    
+
     public function testCreateAuthorSuccess()
     {
         $expected = ['name' => 'Tonhão'];
@@ -69,7 +69,7 @@ class AuthorTest extends TestCase
         $expected['id'] = $last->id;
         $this->assertEquals($final, $expected);
     }
-    
+
     public function testUpdateAuthorSuccess()
     {
         $expected = [
@@ -117,7 +117,15 @@ class AuthorTest extends TestCase
         $expected['id'] = $expected['id'];
         $this->assertEquals($final, $expected);
     }
- 
+
+    public function testShowBooks()
+    {
+        $authorEnt = new \App\Domain\Authors\Entities\AuthorEntity();
+        $firstBook = $authorEnt->find(2)->books()->first();
+        $expected = "Livro Falso 2";
+        $this->assertEquals($firstBook->title, $expected);
+    }
+
     private function returnListSeedResult()
     {
         return json_decode('[{"id":1,"name":"Clenir Bellezi de Oliveira"},{"id":2,"name":"Maria Falsa"},{"id":3,"name":"Regina Falsa"},{"id":4,"name":"Mauro Falso"}]',true);
