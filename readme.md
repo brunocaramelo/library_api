@@ -117,6 +117,11 @@ Após instalar o endereço de acesso é:
 
 ## Changelog
 
+### v1.8.0
+#### Coverage Full
+ - Cobertura de testes 100%
+ - Coverage também com a plataforma Codacy
+
 ### v1.7.0
 #### Code Review
  - Refatoração de código
