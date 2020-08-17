@@ -24,12 +24,9 @@ spec:
         args:
           - "--ignore-db-dir=lost+found"
         name: mysql
-        #env:
-        #- name: MYSQL_ROOT_PASSWORD
-        #  valueFrom:
-        #    secretKeyRef:
-        #      name: mysql-pass
-        #      key: password
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: testes
         ports:
         - containerPort: 3306
           name: mysql

@@ -23,23 +23,23 @@ spec:
         envFrom:
         - configMapRef:
             name: app-conf
-        env:
-        - name: REDIS_HOST
-          value: redis-service
+        # env:
+        # - name: REDIS_HOST
+        #   value: redis-service
         #- name: DB_PASSWORD
         #  valueFrom:
         #    secretKeyRef:
         #      name: mysql-pass
         #      key: password
-        volumeMounts:
-        - name: app-conf
-          subPath: .env
-          mountPath: /var/www/.env  
+        # volumeMounts:
+        # - name: app-conf
+        #   subPath: .env
+        #   mountPath: /var/www/.env  
       
-      volumes:
-      - name: app-conf
-        configMap:
-          name: app-conf
-          items:
-            - key: env
-              path: .env
+      # volumes:
+      # - name: app-conf
+      #   configMap:
+      #     name: app-conf
+      #     items:
+      #       - key: env
+      #         path: .env
