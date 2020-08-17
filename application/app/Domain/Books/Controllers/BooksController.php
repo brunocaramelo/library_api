@@ -18,7 +18,7 @@ class BooksController extends Controller
     {
         return response()->json(['data' => $bookService->getAll()], 200, [], JSON_NUMERIC_CHECK);
     }
-    
+
     public function getById(BookService $bookService, Request $request)
     {
         try {
@@ -27,7 +27,7 @@ class BooksController extends Controller
             return response()->json(['error'=>$error->getMessage()], 404);
         }
     }
-    
+
     public function store(BookService $bookService, Request $request)
     {
         try {

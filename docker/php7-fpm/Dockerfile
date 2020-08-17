@@ -26,6 +26,8 @@ RUN yes | pecl install xdebug
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
+COPY ./application/ /var/www/html
+
 # install phpunit
 RUN curl -fsSL https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
