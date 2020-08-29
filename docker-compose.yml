@@ -27,7 +27,7 @@ services:
     depends_on:
       - redis
       - mysql
-    command: bash -c "sh crontab-install.sh && php-fpm  && php-fpm -v"
+    command: bash -c "php-fpm  && php-fpm -v"
     environment:
       APP_ENV: local
       DB_PORT: 3306
@@ -37,8 +37,6 @@ services:
       DB_HOST: mysql
       MYSQL_HOST: mysql
       REDIS_HOST: redis
-      CACHE_DRIVER: redis
-      SESSION_DRIVER: redis
       DEBUG: 1
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis      
