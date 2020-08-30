@@ -12,5 +12,5 @@ spec:
    - http:
       paths:
       - backend:
-          serviceName: nginx-svc
-          servicePort: 8088
+          serviceName: nginx-app-web-sitezao
+          servicePort: 80
