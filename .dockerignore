@@ -1,33 +1,33 @@
-bootstrap/cache/services.php
-storage/app/*
-storage/framework/cache/*
-storage/framework/sessions/*
-storage/framework/views/*
-storage/logs/*
+application/bootstrap/cache/services.php
+application/storage/app/*
+application/storage/framework/cache/*
+application/storage/framework/sessions/*
+application/storage/framework/views/*
+application/storage/logs/*
 
-vendor/**/test*
-vendor/**/tests*
-vendor/**/Tests*
+application/vendor/**/test*
+application/vendor/**/tests*
+application/vendor/**/Tests*
 
-**/*node_modules
+application/**/*node_modules
 
-**.git
-.idea
-**.gitignore
-**.gitattributes
-**.sass-cache
-*.env*
-composer.json
+application/**.git
+application/.idea
+application/**.gitignore
+application/**.gitattributes
+application/**.sass-cache
+application/*.env*
+# application/composer.json
 
-*.config.js
-?ulpfile.js
-?untfile.js
-package.json
-phpunit.xml
-readme.md
-phpspec.yml
+application/*.config.js
+application/?ulpfile.js
+application/?untfile.js
+application/package.json
+application/phpunit.xml
+application/readme.md
+application/phpspec.yml
 
-Dockerfile
-docker-compose.yml
-run
-run.ps1
+application/Dockerfile
+application/docker-compose.yml
+application/run
+application/run.ps1

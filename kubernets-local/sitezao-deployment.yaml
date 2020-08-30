@@ -66,7 +66,7 @@ spec:
     spec:
       containers:
       - name: libraryapitest-app
-        image: brunocaramelo/libraryapitest-app:v1.0
+        image: brunocaramelo/libraryapitest-app:v2.0
         imagePullPolicy: Always
         command: ["/bin/sh", "-c", "mkdir /usr/share/nginx ; ln -s /var/www/html/public /usr/share/nginx/html;  php-fpm;"]
         ports:
@@ -86,7 +86,7 @@ spec:
       volumes:
         - name: nginx-conf
           configMap:
-            name: nginx-conf-app # place ConfigMap `nginx-conf` on /etc/nginx
+            name: nginx-conf-app-sitezao # place ConfigMap `nginx-conf` on /etc/nginx
             items:
               - key: nginx.conf
                 path: nginx.conf
@@ -119,7 +119,7 @@ spec:
     spec:
       containers:
       - name: libraryapitest-app
-        image: brunocaramelo/libraryapitest-app:v1.0
+        image: brunocaramelo/libraryapitest-app:v2.0
         imagePullPolicy: Always
         command: ["/bin/sh", "-c", "echo '* * * * * cd /var/www/html && /usr/local/bin/php artisan schedule:run >> outputscheduler.log 2>&1' > scheduler.txt ; crontab scheduler.txt ; cron -f ;  php-fpm;"]
         ports:
@@ -145,7 +145,7 @@ spec:
     spec:
       containers:
       - name: libraryapitest-app
-        image: brunocaramelo/libraryapitest-app:v1.0
+        image: brunocaramelo/libraryapitest-app:v2.0
         imagePullPolicy: Always
         command: ["/bin/sh", "-c", "/usr/local/bin/php /var/www/html/artisan queue:work --verbose --tries=7 --timeout=90  ;  php-fpm;"]
         ports:

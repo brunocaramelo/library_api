@@ -43,4 +43,4 @@ WORKDIR /var/www/html
 
 
 ENV PATH /root/.composer/vendor/bin:$PATH
-CMD ["phpunit"]
+CMD ["php-fpm"]

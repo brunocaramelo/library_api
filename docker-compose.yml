@@ -21,8 +21,9 @@ services:
       - redis-data:/data
   php:
     build:
-      context: ./docker/php7-fpm
-    image: laravel:php-fpm
+      context: .
+      dockerfile: ./docker/php7-fpm/Dockerfile
+    image: libraryapiotra:php-fpm
     container_name: php-library
     depends_on:
       - redis
@@ -43,8 +44,8 @@ services:
     links:
       - mysql
       - redis
-    volumes:
-      - ./application/:/var/www/html:rw
+    # volumes:
+    #   - ./application/:/var/www/html:rw
 
   web:
     image: nginx:alpine
