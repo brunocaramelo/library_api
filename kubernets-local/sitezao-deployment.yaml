@@ -112,9 +112,12 @@ kind: Service
 metadata:
   name: nginx-app-web-sitezao
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
-  - port: 80
+  - name: http
+    protocol: TCP
+    port: 8088
+    targetPort: 80
   selector:
    app: app-web-sitezao
 ---

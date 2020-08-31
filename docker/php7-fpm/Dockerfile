@@ -21,12 +21,12 @@ RUN apt-get update && apt-get install -y \
       zip \
       opcache
       
-RUN yes | pecl install xdebug 
+# RUN yes | pecl install xdebug 
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
-COPY ./application/ /var/www/html
+COPY ./application/ /app
 
 # install phpunit
 RUN curl -fsSL https://getcomposer.org/installer | php \
@@ -39,7 +39,7 @@ RUN apt-get update && apt-get -y install rsyslog
 # Change uid and gid of apache to docker user uid/gid
 RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
-WORKDIR /var/www/html
+WORKDIR /app
 
 
 ENV PATH /root/.composer/vendor/bin:$PATH
