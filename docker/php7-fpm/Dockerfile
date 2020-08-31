@@ -41,6 +41,7 @@ RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
 WORKDIR /app
 
+RUN chown -R www-data:www-data /app
 
 ENV PATH /root/.composer/vendor/bin:$PATH
 CMD ["php-fpm"]
