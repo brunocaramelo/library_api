@@ -145,7 +145,8 @@ spec:
         args:
             - -c
             - |
-              crontab scheduler.txt;
+              printenv | grep -v "no_proxy" >> /etc/environment;
+              crontab /app/scheduler.txt;
               cron -f
         # ports:
         # - containerPort: 80
@@ -177,6 +178,7 @@ spec:
         args:
             - -c
             - |
+             printenv | grep -v "no_proxy" >> /etc/environment;
              /usr/local/bin/php /app/artisan queue:work --verbose --tries=7 --timeout=90;
         # ports:
         # - containerPort: 80
