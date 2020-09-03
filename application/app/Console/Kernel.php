@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
 
-            \Log::info(json_encode([get_current_user(),env('LOG_CHANNEL'),env('SESSION_DRIVER'),env('DB_DATABASE')]))
+            \Log::info(json_encode([get_current_user(),env('LOG_CHANNEL'),env('SESSION_DRIVER'),env('DB_DATABASE')]));
             \Log::error('ta rodando: '.date('H:i:s'));
             \Log::warning('ta rodando: '.date('H:i:s'));
             \Log::info('ta rodando: '.date('H:i:s'));
