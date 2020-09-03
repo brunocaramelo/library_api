@@ -30,6 +30,7 @@ services:
       - mysql
     command: bash -c "php-fpm  && php-fpm -v"
     environment:
+      APP_KEY: base64:a89Bj62VIrzfDCsb3m8BNU+JedVKtEZEmqif25fR2g0=
       APP_ENV: local
       DB_PORT: 3306
       DB_USERNAME: sandbox
@@ -40,12 +41,42 @@ services:
       REDIS_HOST: redis
       DEBUG: 1
       CACHE_DRIVER: redis
-      SESSION_DRIVER: redis      
+      SESSION_DRIVER: redis
+      LOG_CHANNEL: stderr    
     links:
       - mysql
       - redis
-    # volumes:
-    #   - ./application/:/var/www/html:rw
+    volumes:
+      - ./application/:/app:rw
+  worker-php:
+    build:
+      context: .
+      dockerfile: ./docker/php7-fpm/Dockerfile
+    image: libraryapiotra:php-worker
+    container_name: php-library-worker
+    depends_on:
+      - redis
+      - mysql
+    command: sh -c "crontab scheduler.txt; cron -f; php-fpm  ; php-fpm -v"
+    environment:
+      APP_KEY: base64:a89Bj62VIrzfDCsb3m8BNU+JedVKtEZEmqif25fR2g0=
+      APP_ENV: local
+      DB_PORT: 3306
+      DB_USERNAME: sandbox
+      DB_DATABASE: library_admin
+      DB_PASSWORD: sandbox
+      DB_HOST: mysql
+      MYSQL_HOST: mysql
+      REDIS_HOST: redis
+      DEBUG: 1
+      CACHE_DRIVER: redis
+      SESSION_DRIVER: redis
+      LOG_CHANNEL: stderr    
+    links:
+      - mysql
+      - redis
+    volumes:
+      - ./application/:/app:rw
 
   web:
     image: nginx:alpine
@@ -56,6 +87,7 @@ services:
       - php
     volumes:
       - ./docker/nginx/default:/etc/nginx/conf.d/default.conf
+      - ./application/:/app:rw
     ports:
       - 80:80
 

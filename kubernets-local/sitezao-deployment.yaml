@@ -145,7 +145,6 @@ spec:
         args:
             - -c
             - |
-              cat crontab-install.txt > scheduler.txt;
               crontab scheduler.txt;
               cron -f
         # ports:
