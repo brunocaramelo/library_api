@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: libraryapitest-app
+        image: libraryapitest.azurecr.io/app:v1.0
+        imagePullPolicy: Always
+        command: ["/bin/sh", "-c", "mkdir /usr/share/nginx ; ln -s /var/www/html/public /usr/share/nginx/html;  php-fpm;"]
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: app-conf
+        # env:
+        # - name: REDIS_HOST
+        #   value: redis-service
+        #- name: DB_PASSWORD
+        #  valueFrom:
+        #    secretKeyRef:
+        #      name: mysql-pass
+        #      key: password
+        # volumeMounts:
+        # - name: app-conf
+        #   subPath: .env
+        #   mountPath: /var/www/.env  
+      
+      # volumes:
+      # - name: app-conf
+      #   configMap:
+      #     name: app-conf
+      #     items:
+      #       - key: env
+      #         path: .env

@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-nginx-php-apps
+  labels:
+    name: app-nginx-php-apps
+spec:
+  volumes:
+      - name: shared-files
+        emptyDir: {}
+      - name: nginx-conf
+        configMap:
+          name: nginx-conf # place ConfigMap `nginx-conf` on /etc/nginx
+          items:
+            - key: nginx.conf
+              path: nginx.conf
+  containers:
+    - name: libraryapitest-app-pod
+      image: brunocaramelo/libraryapitest-app:v1.0
+      # ports:
+      # - containerPort: 9000
+      # imagePullPolicy: Always
+      # lifecycle:
+      #   postStart:
+      #     exec:
+      #       command: ["/bin/sh", "-c", "mkdir -p /usr/share/nginx ; ln -s /var/www/html/public /usr/share/nginx/html;"]
+      envFrom:
+      - configMapRef:
+          name: app-conf  
+    - name: libraryapitest-webserver-pod
+      image: nginx
+      ports:
+      - name: http-port
+        containerPort: 80
+      command: ["/bin/sh", "-c", "touch /usr/share/nginx/html/index.php; nginx -g 'daemon off;'"]
+      volumeMounts:
+      - mountPath: /etc/nginx/conf.d # mount nginx-conf volumn to /etc/nginx
+        readOnly: true
+        name: nginx-conf
+      - name: shared-files
+        mountPath: /var/www/html
+    
+      
