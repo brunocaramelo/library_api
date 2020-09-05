@@ -120,39 +120,39 @@ spec:
     targetPort: 80
   selector:
    app: app-web-sitezao
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: schudlerzeiro
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: schudlerzeiro
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: schudlerzeiro
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: schudlerzeiro
 
-  template:
-    metadata:
-      labels:
-        app: schudlerzeiro
-    spec:
-      containers:
-      - name: libraryapitest-app
-        image: brunocaramelo/libraryapitest-app:v2.0
-        imagePullPolicy: Always
-        # command: ["/bin/sh", "-c", "echo '* * * * * cd /var/www/html && /usr/local/bin/php artisan schedule:run >> outputscheduler.log 2>&1' > scheduler.txt ; crontab scheduler.txt ; cron -f ;  php-fpm;"]
-        command: ["/bin/sh"]
-        args:
-            - -c
-            - |
-              printenv | grep -v "no_proxy" >> /etc/environment;
-              crontab /app/scheduler.txt;
-              cron -f
-        # ports:
-        # - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: app-conf
+#   template:
+#     metadata:
+#       labels:
+#         app: schudlerzeiro
+#     spec:
+#       containers:
+#       - name: libraryapitest-app
+#         image: brunocaramelo/libraryapitest-app:v2.0
+#         imagePullPolicy: Always
+#         # command: ["/bin/sh", "-c", "echo '* * * * * cd /var/www/html && /usr/local/bin/php artisan schedule:run >> outputscheduler.log 2>&1' > scheduler.txt ; crontab scheduler.txt ; cron -f ;  php-fpm;"]
+#         command: ["/bin/sh"]
+#         args:
+#             - -c
+#             - |
+#               printenv | grep -v "no_proxy" >> /etc/environment;
+#               crontab /app/scheduler.txt;
+#               cron -f
+#         # ports:
+#         # - containerPort: 80
+#         envFrom:
+#         - configMapRef:
+#             name: app-conf
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -178,7 +178,6 @@ spec:
         args:
             - -c
             - |
-             printenv | grep -v "no_proxy" >> /etc/environment;
              /usr/local/bin/php /app/artisan queue:work --verbose --tries=7 --timeout=90;
         # ports:
         # - containerPort: 80

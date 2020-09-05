@@ -34,12 +34,14 @@ RUN curl -fsSL https://getcomposer.org/installer | php \
     && composer global require phpunit/phpunit ^7.5 --no-progress --no-scripts --no-interaction
 
 # install cron
-RUN apt-get update && apt-get -y install rsyslog
+#RUN apt-get update && apt-get -y install rsyslog
 
 # Change uid and gid of apache to docker user uid/gid
 RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
 WORKDIR /app
+
+RUN sed -e '/^access.log =/s/^/;/' -i /usr/local/etc/php-fpm.d/docker.conf
 
 RUN chown -R www-data:www-data /app
 
