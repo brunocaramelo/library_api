@@ -2,7 +2,6 @@
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
-use Monolog\Formatter\JsonFormatter;
 
 return [
 
@@ -74,8 +73,7 @@ return [
         'stderr' => [
             'driver' => 'monolog',
             'handler' => StreamHandler::class,
-            // 'formatter' => env('LOG_STDERR_FORMATTER'),
-            'formatter' => JsonFormatter::class,
+            'formatter' => env('LOG_STDERR_FORMATTER'),
             'with' => [
                 'stream' => 'php://stderr',
             ],

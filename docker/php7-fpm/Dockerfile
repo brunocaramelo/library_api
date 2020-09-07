@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 
 # Install PHP extensions
 RUN apt-get update && apt-get install -y \
@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
       libicu-dev \
       libpq-dev \
       libmcrypt-dev \
+      libzip-dev \
     && rm -r /var/lib/apt/lists/* \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && docker-php-ext-install \
@@ -34,7 +35,7 @@ RUN curl -fsSL https://getcomposer.org/installer | php \
     && composer global require phpunit/phpunit ^7.5 --no-progress --no-scripts --no-interaction
 
 # install cron
-#RUN apt-get update && apt-get -y install rsyslog
+#   RUN apt-get update && apt-get -y install rsyslog
 
 # Change uid and gid of apache to docker user uid/gid
 RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
@@ -46,4 +47,5 @@ RUN sed -e '/^access.log =/s/^/;/' -i /usr/local/etc/php-fpm.d/docker.conf
 RUN chown -R www-data:www-data /app
 
 ENV PATH /root/.composer/vendor/bin:$PATH
+
 CMD ["php-fpm"]

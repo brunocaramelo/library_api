@@ -42,8 +42,8 @@ services:
       DEBUG: 1
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis
-      LOG_CHANNEL: stderr    
-      # LOG_STDERR_FORMATTER: JsonFormatter::class    
+      LOG_CHANNEL: stderr
+      LOG_STDERR_FORMATTER: Monolog\Formatter\JsonFormatter    
     links:
       - mysql
       - redis
@@ -72,7 +72,8 @@ services:
       DEBUG: 1
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis
-      LOG_CHANNEL: stderr    
+      LOG_CHANNEL: stderr
+      LOG_STDERR_FORMATTER: Monolog\Formatter\JsonFormatter  
     links:
       - mysql
       - redis
