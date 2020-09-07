@@ -28,7 +28,7 @@ services:
     depends_on:
       - redis
       - mysql
-    command: bash -c "php-fpm  && php-fpm -v"
+    command: bash -c "php artisan migrate && php-fpm"
     environment:
       APP_KEY: base64:a89Bj62VIrzfDCsb3m8BNU+JedVKtEZEmqif25fR2g0=
       APP_ENV: local
@@ -43,11 +43,12 @@ services:
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis
       LOG_CHANNEL: stderr    
+      # LOG_STDERR_FORMATTER: JsonFormatter::class    
     links:
       - mysql
       - redis
     volumes:
-      - ./application/:/app:rw
+     - ./application/:/app:rw
   worker-php:
     build:
       context: .

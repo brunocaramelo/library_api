@@ -16,6 +16,7 @@ class BooksController extends Controller
 {
     public function getAll(BookService $bookService)
     {
+        \Log::info('maoee');
         return response()->json(['data' => $bookService->getAll()], 200, [], JSON_NUMERIC_CHECK);
     }
 

@@ -76,6 +76,7 @@ spec:
               sleep 3;
               php artisan optimize;
               php artisan view:cache;
+              php artisan migrate;
               mkdir /usr/share/nginx;
               ln -s /app/public /usr/share/nginx/html;
               php-fpm
