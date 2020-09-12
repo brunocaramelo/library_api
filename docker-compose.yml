@@ -81,7 +81,7 @@ services:
     #   - ./application/:/app:rw
 
   web:
-    image: nginx:alpine
+    image: nginx:1.19-alpine
     container_name: nginx-library
     depends_on:
       - php
