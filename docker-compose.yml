@@ -47,8 +47,8 @@ services:
     links:
       - mysql
       - redis
-    volumes:
-     - ./application/:/app:rw
+    # volumes:
+    #  - ./application/:/app:rw
   worker-php:
     build:
       context: .
@@ -77,8 +77,8 @@ services:
     links:
       - mysql
       - redis
-    volumes:
-      - ./application/:/app:rw
+    # volumes:
+    #   - ./application/:/app:rw
 
   web:
     image: nginx:alpine
