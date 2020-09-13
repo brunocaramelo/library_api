@@ -28,7 +28,7 @@ services:
     depends_on:
       - redis
       - mysql
-    command: bash -c "php-fpm  && php-fpm -v"
+    command: bash -c "php artisan migrate && php-fpm"
     environment:
       APP_KEY: base64:a89Bj62VIrzfDCsb3m8BNU+JedVKtEZEmqif25fR2g0=
       APP_ENV: local
@@ -42,12 +42,13 @@ services:
       DEBUG: 1
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis
-      LOG_CHANNEL: stderr    
+      LOG_CHANNEL: stderr
+      LOG_STDERR_FORMATTER: Monolog\Formatter\JsonFormatter    
     links:
       - mysql
       - redis
     volumes:
-      - ./application/:/app:rw
+     - ./application/:/app:rw
   worker-php:
     build:
       context: .
@@ -71,7 +72,8 @@ services:
       DEBUG: 1
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis
-      LOG_CHANNEL: stderr    
+      LOG_CHANNEL: stderr
+      LOG_STDERR_FORMATTER: Monolog\Formatter\JsonFormatter  
     links:
       - mysql
       - redis
@@ -79,7 +81,7 @@ services:
       - ./application/:/app:rw
 
   web:
-    image: nginx:alpine
+    image: nginx:1.19-alpine
     container_name: nginx-library
     depends_on:
       - php
