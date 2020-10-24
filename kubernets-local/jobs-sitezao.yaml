@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: job-inutil
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "*/45 * * * *"
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 1
   jobTemplate:
@@ -11,7 +11,7 @@ spec:
       template:
         spec:
           containers:
-          - image: brunocaramelo/libraryapitest-app:v2.0
+          - image: brunocaramelo/libraryapitest-app:v4.0
             name: job-inutil
             command: ["php", "artisan", "schedulerInutil:run"]
             envFrom:
@@ -24,7 +24,7 @@ kind: CronJob
 metadata:
   name: job-cuspidor-log
 spec:
-  schedule: "*/15 * * * *"
+  schedule: "*/55 * * * *"
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 1
   jobTemplate:
@@ -32,7 +32,7 @@ spec:
       template:
         spec:
           containers:
-          - image: brunocaramelo/libraryapitest-app:v2.0
+          - image: brunocaramelo/libraryapitest-app:v4.0
             name: job-cuspidor-log
             command: ["php", "artisan", "cuspirlog:run","--parametrozao=valorAqui"]
             envFrom:
