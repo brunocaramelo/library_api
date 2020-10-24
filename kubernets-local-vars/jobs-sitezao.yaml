@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: job-inutil
+  name: ${project.name}-v${version.major}-job-inutil
 spec:
   schedule: "* * * * 4"
   successfulJobsHistoryLimit: 2
@@ -22,7 +22,7 @@ spec:
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: ${project.imageRepository}:v${project.version}-job-cuspidor-log
+  name: ${project.name}-v${version.major}-job-cuspidor-log
 spec:
   schedule: "* * * * 5"
   successfulJobsHistoryLimit: 2
