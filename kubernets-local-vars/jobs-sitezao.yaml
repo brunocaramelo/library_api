@@ -1,0 +1,41 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: job-inutil
+spec:
+  schedule: "* * * * 4"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - image: brunocaramelo/${project.imageRepository}:v${project.version}
+            name: ${project.imageRepository}:v${project.version}-job-inutil
+            command: ["php", "artisan", "schedulerInutil:run"]
+            envFrom:
+            - configMapRef:
+                name: app-conf
+          restartPolicy: Never
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ${project.imageRepository}:v${project.version}-job-cuspidor-log
+spec:
+  schedule: "* * * * 5"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - image: brunocaramelo/${project.imageRepository}:v${project.version}
+            name: job-cuspidor-log
+            command: ["php", "artisan", "cuspirlog:run","--parametrozao=valorAqui"]
+            envFrom:
+            - configMapRef:
+                name: app-conf
+          restartPolicy: Never

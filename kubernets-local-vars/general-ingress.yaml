@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ${project.name}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+   rules:
+    - host: ${host}
+      http:
+        paths:
+        - backend:
+            serviceName: ${project.name}-v${version.major}-web
+            servicePort: 8088
