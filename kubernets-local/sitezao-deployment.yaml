@@ -66,7 +66,7 @@ spec:
     spec:
       containers:
       - name: libraryapitest-app
-        image: brunocaramelo/libraryapitest-app:v3.0
+        image: brunocaramelo/libraryapitest-app:v4.0
         imagePullPolicy: Always
         # command: ["/bin/sh", "-c", "mkdir /usr/share/nginx ; ln -s /app/public /usr/share/nginx/html;  php-fpm;"]
         command: ["/bin/sh"]
@@ -82,6 +82,13 @@ spec:
               php-fpm
         ports:
         - containerPort: 9000
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "550m"
+          limits:
+            memory: "250Mi"
+            cpu: "1000m"
         envFrom:
         - configMapRef:
             name: app-conf
@@ -100,6 +107,13 @@ spec:
         - mountPath: /etc/nginx/conf.d # mount nginx-conf volumn to /etc/nginx
           readOnly: true
           name: nginx-conf
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
       volumes:
         - name: nginx-conf
           configMap:
@@ -172,10 +186,10 @@ spec:
     spec:
       containers:
       - name: libraryapitest-app
-        image: brunocaramelo/libraryapitest-app:v3.0
+        image: brunocaramelo/libraryapitest-app:v4.0
         imagePullPolicy: Always
-        # command: ["/bin/sh", "-c", "/usr/local/bin/php /app/artisan queue:work --verbose --tries=7 --timeout=90  ;  php-fpm;"]
-        command:  ["/usr/local/bin/php", "/app/artisan", "queue:work", "--daemon", "--queue=do-work", "--sleep=3", "--tries=3"]
+        command: ["/bin/sh", "-c", "/usr/local/bin/php /app/artisan queue:work --verbose --tries=7 --timeout=90"]
+        # command:  ["/usr/local/bin/php", "/app/artisan", "queue:work", "--daemon", "--queue=do-work", "--sleep=3", "--tries=3"]
         # args:
         #     - -c
         #     - |

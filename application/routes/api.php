@@ -19,23 +19,29 @@ Route::group(['prefix' => 'v1'], function ()
         [ 'as' => 'authors-list',
         'uses' => '\App\Domain\Authors\Controllers\AuthorsController@getAll'
     ]);
-    
+
     Route::group(['prefix' => 'author'], function ()
     {
+        Route::get('/process/message',
+            [ 'as' => 'author-process-message',
+            'uses' => '\App\Domain\Authors\Controllers\AuthorsController@sendMessageToQueue'
+        ]);
+
         Route::get('/{id}',
             [ 'as' => 'author-detail',
             'uses' => '\App\Domain\Authors\Controllers\AuthorsController@getById'
         ]);
 
         Route::put('/{id}',
-            [ 'as' => 'author-store',
-            'uses' => '\App\Domain\Authors\Controllers\AuthorsController@store'
+        [ 'as' => 'author-store',
+        'uses' => '\App\Domain\Authors\Controllers\AuthorsController@store'
         ]);
 
         Route::post('/',
-            [ 'as' => 'author-create',
-            'uses' => '\App\Domain\Authors\Controllers\AuthorsController@create'
+        [ 'as' => 'author-create',
+        'uses' => '\App\Domain\Authors\Controllers\AuthorsController@create'
         ]);
+
     });
 
 

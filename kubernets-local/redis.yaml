@@ -18,12 +18,19 @@ spec:
       containers:
       - name: master
         image: redis:alpine
-        # resources:
-        #   requests:
-        #     cpu: 100m
-        #     memory: 100Mi
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        volumeMounts:
+        - name: redis-persistent-storage
+          mountPath: /data/redis
         ports:
         - containerPort: 6379
+      volumes:
+      - name: redis-persistent-storage
+        persistentVolumeClaim:
+          claimName: redis-pv-claim
 
 ---
 
@@ -41,3 +48,17 @@ spec:
   selector:
     app: redis
     role: master
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-pv-claim
+  annotations:
+    volume.beta.kubernetes.io/storage-class: standard
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

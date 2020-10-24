@@ -37,6 +37,6 @@ class SchedulerInutil extends Command
      */
     public function handle()
     {
-        \Log::info('sou o schedulerInutil e nao estou fazendo nada');
+     \Log::info('sou o schedulerInutil e nao estou fazendo nada');
     }
 }

@@ -10,13 +10,16 @@ use App\Domain\Authors\Services\AuthorService;
 use App\Domain\Authors\Exceptions\AuthorEditException;
 use App\Domain\Authors\Exceptions\AuthorNotFoundException;
 
+use App\Jobs\ProcessExperimentalJob;
+use Carbon\Carbon;
+
 class AuthorsController extends Controller
 {
     public function getAll(AuthorService $authorService)
     {
         return response()->json(['data' => $authorService->getAll()]);
     }
-    
+
     public function getById(AuthorService $authorService, Request $request)
     {
         try {
@@ -26,7 +29,7 @@ class AuthorsController extends Controller
             return response()->json(['error'=>$error->getMessage()], 404);
         }
     }
-    
+
     public function store(AuthorService $authorService, Request $request)
     {
         try {
@@ -56,5 +59,18 @@ class AuthorsController extends Controller
             \DB::rollback();
             return response()->json(['error'=>$error->getMessage()], 422);
         }
+    }
+
+    public function sendMessageToQueue(Request $request)
+    {
+        $this->dispatch(new ProcessExperimentalJob(
+            $request->all()['message'].Carbon::now()->format('Y-m-d H:i:s:u')
+        ));
+
+        return response()->json([
+            'status' => '200',
+            'message'=> 'Envio efetuado com sucesso, aguarde o processamento',
+            'data'=> null
+            ]);
     }
 }
