@@ -98,11 +98,11 @@ spec:
           name: ${project.name}-v${version.major}-web-config
         resources:
           requests:
-            memory: "100Mi"
-            cpu: "140m"
+            memory: "28Mi"
+            cpu: "4m"
           limits:
-            memory: "128Mi"
-            cpu: "150m"
+            memory: "68Mi"
+            cpu: "50m"
       volumes:
         - name: ${project.name}-v${version.major}-web-config
           configMap:
@@ -130,15 +130,13 @@ spec:
     spec:
       containers:
       - name: ${project.name}-v${version.major}
-        image: brunocaramelo/${project.imageRepository}:v${project.version}
+        image: ${project.serverImageRepository}/${project.imageRepository}:v${project.version}
         imagePullPolicy: Always
         command: ["/bin/sh"]
         args:
             - -c
             - |
-              sleep 2;
               php artisan optimize;
-              php artisan view:cache;
               php artisan migrate;
               mkdir /usr/share/nginx;
               ln -s /app/public /usr/share/nginx/html;
@@ -147,11 +145,11 @@ spec:
         - containerPort: 9000
         resources:
           requests:
-            memory: "200Mi"
-            cpu: "555m"
+            cpu: 50m
+            memory: 320Mi
           limits:
-            memory: "250Mi"
-            cpu: "600m"
+            cpu: "60m"
+            memory: "400Mi"
         envFrom:
         - configMapRef:
             name: ${project.name}-v${version.major}
@@ -201,9 +199,16 @@ spec:
     spec:
       containers:
       - name: ${project.name}-queue
-        image: brunocaramelo/${project.imageRepository}:v${project.version}
+        image: ${project.serverImageRepository}/${project.imageRepository}:v${project.version}
         imagePullPolicy: Always
         command: ["/bin/sh", "-c", "/usr/local/bin/php /app/artisan queue:work --verbose --tries=7 --timeout=90"]
         envFrom:
         - configMapRef:
             name: ${project.name}-v${version.major}
+        resources:
+          requests:
+            cpu: 50m
+            memory: 320Mi
+          limits:
+            cpu: "60m"
+            memory: "400Mi"
