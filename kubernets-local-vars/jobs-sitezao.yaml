@@ -11,12 +11,12 @@ spec:
       template:
         spec:
           containers:
-          - image: brunocaramelo/${project.imageRepository}:v${project.version}
-            name: ${project.imageRepository}:v${project.version}-job-inutil
+          - image: ${project.serverImageRepository}/${project.imageRepository}:v${project.version}
+            name: ${project.name}-v${version.major}-job-inutil
             command: ["php", "artisan", "schedulerInutil:run"]
             envFrom:
             - configMapRef:
-                name: app-conf
+                name: ${project.name}-v${version.major}
           restartPolicy: Never
 ---
 apiVersion: batch/v1beta1
@@ -32,10 +32,31 @@ spec:
       template:
         spec:
           containers:
-          - image: brunocaramelo/${project.imageRepository}:v${project.version}
-            name: job-cuspidor-log
+          - image: ${project.serverImageRepository}/${project.imageRepository}:v${project.version}
+            name: ${project.name}-v${version.major}-job-cuspidor-log
             command: ["php", "artisan", "cuspirlog:run","--parametrozao=valorAqui"]
             envFrom:
             - configMapRef:
-                name: app-conf
+                name: ${project.name}-v${version.major}
+          restartPolicy: Never
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ${project.name}-test-image-local
+spec:
+  schedule: "* * * * 5"
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - image: ${project.serverImageRepository}/${project.imageRepository}:v${project.version}
+            name: job-test-image-local
+            command: ["php", "artisan", "cuspirlog:run","--parametrozao=valorAqui"]
+            envFrom:
+            - configMapRef:
+                name: ${project.name}-v${version.major}
           restartPolicy: Never
