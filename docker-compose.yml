@@ -23,7 +23,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/php7-fpm/Dockerfile
-    image: libraryapiotra:php-fpm
+    image: repo-registry-local.ftd.com.br:5000/libraryapitest-app:v4.0
     container_name: php-library
     depends_on:
       - redis
