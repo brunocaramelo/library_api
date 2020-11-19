@@ -17,6 +17,8 @@ spec:
             envFrom:
             - configMapRef:
                 name: ${project.name}-v${version.major}
+            - secretRef:
+                name: library-api-variables
           restartPolicy: Never
 ---
 apiVersion: batch/v1beta1
@@ -38,6 +40,8 @@ spec:
             envFrom:
             - configMapRef:
                 name: ${project.name}-v${version.major}
+            - secretRef:
+                name: library-api-variables
           restartPolicy: Never
 ---
 apiVersion: batch/v1beta1
@@ -59,4 +63,6 @@ spec:
             envFrom:
             - configMapRef:
                 name: ${project.name}-v${version.major}
+            - secretRef:
+                name: library-api-variables
           restartPolicy: Never

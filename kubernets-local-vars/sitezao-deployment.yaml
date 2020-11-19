@@ -30,25 +30,25 @@ metadata:
 data:
   APP_NAME: appLibrary
   APP_ENV: local
-  APP_KEY: "base64:vw6G2uP8LV22haEERtzr5yDCBraLrMwbxlbSJDA97uk="
+  # APP_KEY: "base64:vw6G2uP8LV22haEERtzr5yDCBraLrMwbxlbSJDA97uk="
   APP_DEBUG: "true"
   APP_URL: http://localhost
-  LOG_CHANNEL: stderr
+  # LOG_CHANNEL: stderr
   LOG_STDERR_FORMATTER: Monolog\Formatter\JsonFormatter
   DB_CONNECTION: mysql
-  DB_HOST: mysql-service
-  DB_PORT: "3306"
-  DB_DATABASE: library_admin
-  DB_USERNAME: root
-  DB_PASSWORD: testes
+  # DB_HOST: mysql-service
+  # DB_PORT: "3306"
+  # DB_DATABASE: library_admin
+  # DB_USERNAME: root
+  # DB_PASSWORD: testes
   BROADCAST_DRIVER: log
-  CACHE_DRIVER: file
+  # CACHE_DRIVER: redis
   QUEUE_CONNECTION: database
-  SESSION_DRIVER: redis
+  # SESSION_DRIVER: redis
   SESSION_LIFETIME: "120"
-  REDIS_HOST: redis-service
-  REDIS_PASSWORD: "null"
-  REDIS_PORT: "6379"
+  # REDIS_HOST: redis-service
+  # REDIS_PASSWORD: testes
+  # REDIS_PORT: "6380"
   MAIL_DRIVER: smtp
   MAIL_HOST: smtp.mailtrap.io
   MAIL_PORT: "2525"
@@ -153,6 +153,8 @@ spec:
         envFrom:
         - configMapRef:
             name: ${project.name}-v${version.major}
+        - secretRef:
+            name: library-api-variables
             
 ---
 apiVersion: v1
@@ -205,6 +207,8 @@ spec:
         envFrom:
         - configMapRef:
             name: ${project.name}-v${version.major}
+        - secretRef:
+            name: library-api-variables
         resources:
           requests:
             cpu: 50m

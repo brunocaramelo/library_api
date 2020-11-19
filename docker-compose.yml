@@ -17,13 +17,14 @@ services:
   redis:
     image: redis:alpine
     container_name: redis-library
+    command: ['redis-server', '--bind','0.0.0.0','--requirepass', 'testes','--port','6380']
     volumes:
       - redis-data:/data
   php:
     build:
       context: .
       dockerfile: ./docker/php7-fpm/Dockerfile
-    image: libraryapiotra:php-fpm
+    image: repo-registry-local.ftd.com.br:5000/libraryapitest-app:v4.0
     container_name: php-library
     depends_on:
       - redis
@@ -39,6 +40,8 @@ services:
       DB_HOST: mysql
       MYSQL_HOST: mysql
       REDIS_HOST: redis
+      REDIS_PORT: 6380
+      REDIS_PASSWORD: testes
       DEBUG: 1
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis
@@ -69,6 +72,40 @@ services:
       DB_HOST: mysql
       MYSQL_HOST: mysql
       REDIS_HOST: redis
+      REDIS_PORT: 6380
+      REDIS_PASSWORD: testes
+      DEBUG: 1
+      CACHE_DRIVER: redis
+      SESSION_DRIVER: redis
+      LOG_CHANNEL: stderr
+      LOG_STDERR_FORMATTER: Monolog\Formatter\JsonFormatter  
+    links:
+      - mysql
+      - redis
+    volumes:
+      - ./application/:/app:rw
+  worker-queue:
+    build:
+      context: .
+      dockerfile: ./docker/php7-fpm/Dockerfile
+    image: libraryapiotra:php-worker-queue
+    container_name: php-library-worker-queue
+    depends_on:
+      - redis
+      - mysql
+    command: sh -c "php /app/artisan queue:work --verbose --tries=7 --timeout=90"
+    environment:
+      APP_KEY: base64:a89Bj62VIrzfDCsb3m8BNU+JedVKtEZEmqif25fR2g0=
+      APP_ENV: local
+      DB_PORT: 3306
+      DB_USERNAME: sandbox
+      DB_DATABASE: library_admin
+      DB_PASSWORD: sandbox
+      DB_HOST: mysql
+      MYSQL_HOST: mysql
+      REDIS_HOST: redis
+      REDIS_PORT: 6380
+      REDIS_PASSWORD: testes
       DEBUG: 1
       CACHE_DRIVER: redis
       SESSION_DRIVER: redis
