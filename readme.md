@@ -179,3 +179,9 @@ Após instalar o endereço de acesso é:
     - Nginx
     - Mariadb
     - Redis
+
+#### Executando PHPMetrics
+
+    Ir para application
+    
+    php ./vendor/bin/phpmetrics --report-html=tests/_reports/phpmetrics app/ app/Domain
