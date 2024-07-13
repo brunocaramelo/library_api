@@ -46,6 +46,7 @@ A aplicação é separada pelos seguintes conteineres
 | web (nginx) | nginx:alpine | Web Server |
 | rabbitmq | rabbitmq:3-management-alpine | Filas |
 
+
 ## Requisitos
     - Docker
     - Docker Daemon (Service)
