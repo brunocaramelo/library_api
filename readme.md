@@ -117,7 +117,7 @@ A aplicação é separada pelos seguintes conteineres
 
 Após instalar o endereço de acesso é:
 
-- http://localhost/api/documentation
+- https://localhost/api/documentation
 
 
 ## Changelog
