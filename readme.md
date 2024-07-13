@@ -36,8 +36,8 @@ Esta aplicação conta com as seguintes especificações abaixo:
 
 A aplicação é separada pelos seguintes conteineres
 
-| Service | Image |
-| --- | --- |
+| Serviço | Imagem | Motivação |
+| --- | --- | --- |
 | mysql | mariadb:latest | Base de dados da aplicação |
 | redis | redis:alpine | Provedor de cache |
 | php | laravel:php-fpm | Aplicação backend web |
