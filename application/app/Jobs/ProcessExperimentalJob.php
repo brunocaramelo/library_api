@@ -3,10 +3,10 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
 use Carbon\Carbon;
 
@@ -34,7 +34,7 @@ class ProcessExperimentalJob implements ShouldQueue
     public function handle()
     {
         \Log::info(
-            $this->message.' Processado em: '.Carbon::now()->format('Y-m-d H:i:s:u')
+            $this->message.' Processed at: '.Carbon::now()->format('Y-m-d H:i:s:u')
         );
     }
 }
