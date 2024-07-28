@@ -62,15 +62,15 @@ A aplicação é separada pelos seguintes conteineres
 
 3 - Entrar no diretório base da aplicação e executar os comandos abaixo:
     
-    1 - sudo docker-compose up -d; (LER OBSERVACAO)
+    1 - docker-compose up -d; (LER OBSERVACAO)
 
-    2 - sudo docker exec -t php-library php /var/www/html/artisan migrate;
+    2 - docker exec -t php-library php /var/www/html/artisan migrate;
 
-    3 - sudo docker exec -t php-library php /var/www/html/artisan db:seed;
+    3 - docker exec -t php-library php /var/www/html/artisan db:seed;
 
-    4 - sudo docker exec -t php-library php /var/www/html/artisan key:generate;
+    4 - docker exec -t php-library php /var/www/html/artisan key:generate;
     
-    5 - sudo docker exec -t php-library phpunit;
+    5 - docker exec -t php-library phpunit;
 
     
 ### Descrição dos Passos
