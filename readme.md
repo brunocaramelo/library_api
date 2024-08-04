@@ -1,27 +1,14 @@
-# SIMPLES API DE LIVROS
+# SIMPLE API OF BOOKS
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b4e2f043675e4aa7b4131714b45c3ced)](https://app.codacy.com/app/brunocaramelo/library_api?utm_source=github.com&utm_medium=referral&utm_content=brunocaramelo/library_api&utm_campaign=Badge_Grade_Settings)
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/0ee714429a0148b282e582025dcdd80e)](https://www.codacy.com/app/brunocaramelo/library_api?utm_source=github.com&utm_medium=referral&utm_content=brunocaramelo/library_api&utm_campaign=Badge_Coverage)
-
-Aplicação simples de CRUD de Livros, Autores e Disciplinas utilizando técnicas que podem ser utilizadas com CI/CD
-para gerencimento de ambientes com o uso de:
+Simple application of CRUD of Books, Authors and Disciplines using techniques that can be used with CI/CD
+for managing environments with the use of:
 
 
-## Acessos:
+## Technical Specifications
 
-Disponivel no Heroku com o seguinte Link:
+This application has the following specifications: 
 
-http://api-library-testcase.herokuapp.com/api/documentation e coverage report em:
-
-http://api-library-testcase.herokuapp.com/coverage-report
-
-
-## Especificações Técnicas
-
-Esta aplicação conta com as seguintes especificações abaixo: 
-
-| Ferramenta | Versão |
+| Tool | Version |
 | --- | --- |
 | Docker | 24.0.7 |
 | Docker Compose | 1.29.2 |
@@ -34,159 +21,150 @@ Esta aplicação conta com as seguintes especificações abaixo:
 | Swagger | 2.*.* |
 | Rabbitmq | 3.*.* |
 
-A aplicação é separada pelos seguintes conteineres
+The application is separated by the following containers
 
-| Serviço | Imagem | Motivação |
+| Service | Image | Motivação
 | --- | --- | --- |
-| mysql | mariadb:latest | Base de dados da aplicação |
-| redis | redis:alpine | Provedor de cache |
-| php | laravel:php-fpm | Aplicação backend web |
+| mysql | mariadb:latest | Default database |
+| redis | redis:alpine | Cache provider |
+| php | laravel:php-fpm | Web Application backend |
 | worker-queue | laravel:php-fpm | Scheduler |
-| worker-php | laravel:php-fpm | Processador de Filas |
+| worker-php | laravel:php-fpm | Queue processor |
 | web (nginx) | nginx:alpine | Web Server |
-| rabbitmq | rabbitmq:3-management-alpine | Filas |
+| rabbitmq | rabbitmq:3-management-alpine | Queues |
 
-
-## Requisitos
+## Requirements
     - Docker
     - Docker Daemon (Service)
     - Docker Compose
 
-## Procedimentos de Instalação
-    Procedimentos de Instação da aplicação para uso local
+## Installation Procedures
+    Application Installation Procedures for Local Use
 
-1- Baixar repositório 
-    - git clone https://github.com/brunocaramelo/library_api.git
-
-2 - Verificar se as portas 80 e 3306 estão ocupadas.
-
-3 - Entrar no diretório base da aplicação e executar os comandos abaixo:
+1- Download repository 
     
-    1 - docker-compose up -d; (LER OBSERVACAO)
+2 - Check if doors 80 and 3306 are occupied.
 
-    2 - docker exec -t php-library php /var/www/html/artisan migrate;
-
-    3 - docker exec -t php-library php /var/www/html/artisan db:seed;
-
-    4 - docker exec -t php-library php /var/www/html/artisan key:generate;
+3 - Enter the base directory of the application and execute the commands below:
     
-    5 - docker exec -t php-library phpunit;
+    0 - cp docker/docker-compose-env/database.env.example docker/docker-compose-env/database.env
+        - cp docker/docker-compose-env/application.env.example docker/docker-compose-env/application.env
+        - cp docker/docker-compose-env/messagequeue.env.example docker/docker-compose-env/messagequeue.env
+
+    1 - docker-compose up -d; (READ OBSERVATION)
+
+    2 - docker exec -t php-library-example php /app/artisan migrate;
+
+    3 - docker exec -t php-library-example php /app/artisan db:seed;
+
+    4 - docker exec -t php-library-example php /app/artisan key:generate;
+    
 
     
-### Descrição dos Passos
+#### Description of the Steps
 
-    1 -  para que as imagens sejam armazenandas e executadas e subir as instancias
+    1 - for the images to be stored and executed and to upload the instances
         
-        (OBSERVACAO) - devido a demora do composer em trazer as dependências, existem 3 alternativas,
+        (OBSERVATION) - due to the delay of the composer in bringing the dependencies, there are 3 alternatives,
         
-            1 - EXECUTAR sudo docker-compose up; sem ser daemon a primeira vez, para que seja possivel verificar o andamento da instalação de dependências.
+            1 - EXECUTE sudo docker-compose up; without being daemon the first time, so that it is possible to check the progress of the installation of dependencies.
             
-            2 - Aguardar uns 20 minutos ou pouco mais para que o comando seja efetivado. afim de evitar de autoload por exemplo.
+            2 - Wait about 20 minutes or a little more for the command to be effective. in order to avoid autoload for example.
             
-            3 - Caso tenha algum problema de Depencias, executar o comando abaixo para garantir as mesmas.
-                sudo docker exec -t php-library composer install;
+            3 - In case you have any problem of Dependencies, execute the command below to guarantee them.
+                sudo docker exec -t php-library-example composer install;
     
-    2 -  para que o framework gere e aplique o mapeamento para a base de dados (SQL) podendo ser Mysql, PostGres , Oracle , SQL Serve ou SQLITE por exemplo
+    2 - so that the framework manages and applies the mapping to the database (SQL) can be Mysql, PostGres , Oracle , SQL Serve or SQLITE for example
     
-    3 -  para que o framework  aplique mudanças nos dados da base, no caso inserção de um primeiro usuário.
+    3 - for the framework to apply changes to the database data, in the case of a first user insertion.
     
-    4 -  geração de hash key para uso do sistema como chave de validação.
+    4 - generation of hash key to use the system as validation key.
     
-    5 - para que o framework execute a suite de testes.
-        - testes de API  
-        - testes de unidade
+    5 - for the framework to execute the test suite.
+        - API tests  
+        - unit tests
      
-### Resolução de possíveis problemas:
+### Resolution of possible problems:
 
-#### Problemas com dependências/autoload (Passo 1)
-    devido a demora do composer em trazer as dependências, existem 3 alternativas,
+#### Problems with dependencies/autoload (Step 1)
+    Due to the delay of the composer in bringing the dependencies, there are 3 alternatives,
         
-            1 - EXECUTAR sudo docker-compose up; sem ser daemon a primeira vez, para que seja possivel verificar o andamento da instalação de dependências.
+            1 - EXECUTE sudo docker-compose up; without being daemon the first time, so that it is possible to check the progress of the installation of dependencies.
             
-            2 - Aguardar uns 20 minutos ou pouco mais para que o comando seja efetivado. afim de evitar erros de autoload por exemplo.
+            2 - Wait about 20 minutes or a little more for the command to be effective. in order to avoid autoload errors for example.
             
-            3 - Caso tenha algum problema de Depencias, executar o comando abaixo para garantir as mesmas.
-                sudo docker exec -t php-library composer install;
+            3 - In case you have any problem with dependencies, execute the command below to guarantee them.
+                sudo docker exec -t php-library-example composer install;
 
-#### Problemas com permissão do Webserver ao volume exposto (Passo 6)
-    - O mesmo pode ter problemas de permissão do Webserver ao volume /var/www/html (ou subdiretórios)
-      Mesmo não sendo indicado, mas por ser um ambiente local, pode ser feita a execução forçada de permissões com:
-       - sudo docker-compose exec web chmod 777 -R /var/www/html    
+#### Problems with Webserver permission to the exposed volume (Step 6)
+    - The same may have webserver permission problems at volume /app (or subdirectories)
+      Even though it is not indicated, but because it is a local environment, the forced execution of permissions can be done with:
+       - sudo docker-compose exec web chmod 777 -R /app    
 
-## Pós Instalação
+## Post Installation
 
-Após instalar o endereço de acesso é:
+After installing the access address is:
 
 - https://localhost/api/documentation
 
 
 ## Changelog
 
-### v1.8.0
-#### Coverage Full
- - Cobertura de testes 100%
- - Coverage também com a plataforma Codacy
-
 ### v1.7.0
 #### Code Review
- - Refatoração de código
+ - Code Refactoring
  - Service Providers
  - Lints
 
 ### v1.6.0
-#### Release Estável
- - Ajustes de Readme.
- - Ajuste de orientação
- - Correção de pequenos bugs
+#### Stable Release
+ - Readme adjustments.
+ - Orientation Adjustment
+ - Small bug fixes
 
-### v1.5.0
-#### Implantação no Heroku
-- Correções de bugs
-- Ajustes no read.me
-- Ajustes no schema do Swagger
-- Disponibilização da aplicação em : http://api-library-testcase.herokuapp.com/api/documentation
 
 ### v1.4.0
-#### Instalação do Swagger e ajustes finais
-- Ajustes em Books
-- Instalação do Swagger
-- Ajustes de CI/CD
+#### Swagger installation and final adjustments
+- Adjustments in Books
+- Swagger Installation
+- IC/CD adjustments
 
 ### v1.3.0
-#### Módulo de Livros
-- Ajustes de Disciplinas e Autores
-- Finalização da cobertura de testes
-- Módulo de Livos
+#### Book Module
+- Adjustments of Disciplines and Authors
+- Completion of test coverage
+- File Module
 
 ### v1.2.0
-#### Módulos de Disciplina e Autores
-- Adição de Módulos de Disciplinas e Autores
-- Testes Unitários e de API
-- Adicionado Coverage Report
-- Seeder de teste
-- API pública com módulos de Disciplina e Autores
+#### Discipline Modules and Authors
+- Addition of Discipline Modules and Authors
+- Unitary and API Testing
+- Added Coverage Report
+- Test Seeder
+- Public API with Discipline modules and Authors
 
 ### 1.1.0
-#### Migrations e Seeders
-- Estruturação do schema
-- Execução da migração para a base de dados
-- Criação e estruturação
-- Execução dos Seeders com base no JSON exposto (storage/data_import/data-origin.json)
+#### Migrations and Seeders
+- Schema structuring
+- Execution of the migration to the database
+- Creation and structuring
+- Seeders execution based on the JSON exposed (storage/data_import/data-origin.json)
+
 
 ### v1.0.0
-#### Framework e Deploy
+#### Framework and Deploy
 
-- Framework Laravel 5.7
-- Docker utilizando versão 1.13
-- Docker compose versão 1.22
-- Contexto de contêiners
+- Laravel Framework 5.7
+- Docker using version 1.13
+- Docker compose version 1.22
+- Container Context
     - PHP + PHP-FPM
     - Nginx
     - Mariadb
     - Redis
 
-#### Executando PHPMetrics
+#### Running PHPMetrics
 
-    Ir para application
+    Go to application
     
-    php ./vendor/bin/phpmetrics --report-html=tests/_reports/phpmetrics app/ app/Domain
+    sudo docker exec -t php-library-example php ./vendor/bin/phpmetrics --report-html=tests/_reports/phpmetrics app/ app/Domain
